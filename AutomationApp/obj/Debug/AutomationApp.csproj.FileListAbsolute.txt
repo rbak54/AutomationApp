@@ -1,0 +1,10 @@
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\bin\Debug\AutomationApp.exe.config
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\bin\Debug\AutomationApp.exe
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\bin\Debug\AutomationApp.pdb
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.Form1.resources
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.Properties.Resources.resources
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csproj.GenerateResource.cache
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csproj.CoreCompileInputs.cache
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.exe
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.pdb
+C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csprojAssemblyReference.cache
