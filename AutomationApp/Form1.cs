@@ -45,6 +45,7 @@ namespace AutomationApp
                     //open file
                     foreach (string sFileName in filePath)
                     {
+                        //https://coderwall.com/p/app3ya/read-excel-file-in-c
                         //Create COM Objects. Create a COM object for everything that is referenced
                         Excel.Application xlApp = new Excel.Application();
                         xlApp.Visible = true;
@@ -54,16 +55,18 @@ namespace AutomationApp
 
                         int rowCount = xlRange.Rows.Count;
                         int colCount = xlRange.Columns.Count;
-                        
+                        //int filteredCols;
                         //xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
                         for (int i=3; i<11; i++) 
                         {
-                        //filter- i is column number 
-                         xlRange.AutoFilter(i,"<100");
-                        //code to use filtered data
-
-                        //back to normal
-                        xlRange.AutoFilter(i);
+                            //filter- i is column number 
+                            //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
+                            xlRange.AutoFilter(i,"<100");
+                            //code to use filtered data-below aren't working, just messing around
+                            //filteredCols =3;
+                            //xlRange=xlWorksheet.get_Range("A1", "A"+filteredCols.ToString());
+                            //back to normal
+                            xlRange.AutoFilter(i);
 
                         }
 
