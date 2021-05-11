@@ -51,13 +51,23 @@ namespace AutomationApp
                         Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                         Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                         Excel.Range xlRange = xlWorksheet.UsedRange;
+
                         int rowCount = xlRange.Rows.Count;
                         int colCount = xlRange.Columns.Count;
                         
-                        xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
-                       // Excel.Range smallerRange = xlRange.AutoFilter(xlRange.Columns[3],"<100");
+                        //xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
+                        for (int i=3; i<11; i++) 
+                        {
+                        //filter- i is column number 
+                         xlRange.AutoFilter(i,"<100");
+                        //code to use filtered data
 
-                        
+                        //back to normal
+                        xlRange.AutoFilter(i);
+
+                        }
+
+
                         //cleanup
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
