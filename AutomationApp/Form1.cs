@@ -69,6 +69,15 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
+                xlWorksheet2.Cells[1, 1] = box_0101.Text;
+                xlWorksheet2.Cells[1, 2] = box_0102.Text;
+                xlWorksheet2.Cells[1, 3] = box_0103.Text;
+                xlWorksheet2.Cells[1, 4] = box_0104.Text;
+                xlWorksheet2.Cells[1, 5] = box_0105.Text;
+                xlWorksheet2.Cells[1, 6] = box_0106.Text;
+                xlWorksheet2.Cells[1, 7] = box_0107.Text;
+                xlWorksheet2.Cells[1, 8] = box_0108.Text;
+
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
                 //for (int i=3; i<11; i++) 
@@ -78,10 +87,10 @@ namespace AutomationApp
 
                 //PUT SAMPLE NAME IN EXCEL
 
-                xlWorksheet2.Cells[1, 1] = box_0101.Text;
+
                 
                 ///SORT AND FILTER- i is column number 
-                xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
+                xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
                 xlRange.AutoFilter(i, "<100");
 
                 //COUNT FILTERED ROWS
@@ -93,7 +102,7 @@ namespace AutomationApp
                 //sourceRange.Copy(Type.Missing);
 
                 //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
-                Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B5");
+                Excel.Range xlRange2 = xlWorksheet2.get_Range("A2", "A6");
                 Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
                 sourceRng.Copy(Type.Missing);
                 xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
@@ -103,8 +112,8 @@ namespace AutomationApp
                 xlRange.AutoFilter(i);
 
                 //SAVE INTERMEDIATE DOCUMENT
-                xlWorkbook2.SaveAs(@"test3.xls");
-
+                xlWorkbook2.SaveAs(@"test.xls");
+                
 
                 //}
 
@@ -123,9 +132,8 @@ namespace AutomationApp
                 Marshal.ReleaseComObject(xlWorksheet2);
                 Marshal.ReleaseComObject(sourceRng);
                 //close and release
-                xlWorkbook.Close();
+                xlWorkbook.Close(false, Type.Missing, Type.Missing);
                 xlWorkbook2.Close();
-
                 Marshal.ReleaseComObject(xlWorkbook);
                 Marshal.ReleaseComObject(xlWorkbook2);
 
