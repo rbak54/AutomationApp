@@ -41,16 +41,29 @@ namespace AutomationApp
                         Excel.Application xlApp = new Excel.Application();
                         xlApp.Visible = true;
                         Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
-                        Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                        Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];                      
                         Excel.Range xlRange = xlWorksheet.UsedRange;
                         //int rowCount = xlRange.Rows.Count;
                         //int colCount = xlRange.Columns.Count;
+                        
 
                         //create COM objects for intermediate app
                         Excel.Application xlApp2 = new Excel.Application();
                         xlApp2.Visible = true;
                         Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                         Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
+                        
+
+                        //Copy everything to the new file and save - so we don't corrupt the original data
+                        Excel.Range xlRange2 = xlWorksheet2.get_Range("A1", "P527");
+                        Excel.Range sourceRng = xlWorksheet.get_Range("A1", "P527"); //This needs to not be hard-coded
+                        sourceRng.Copy(Type.Missing);
+                        xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                        xlWorkbook2.SaveAs(@"test.xls"); //This also needs to not be hard-coded
+
+                        Excel.Workbook xlWorkbookNew = xlApp2.Workbooks.Open(@"test.xls"); //this also needs to not be hard coded
+                        Excel._Worksheet xlWorksheetNew = xlWorkbookNew.Sheets[1];
+                        Excel.Range xlRangeNew = xlWorksheetNew.UsedRange;
 
                         //LOOP THROUGH SAMPLES 
                         //for loop to repeat for each sample. Can reinstate this later.
@@ -59,8 +72,19 @@ namespace AutomationApp
                         int i = 3;
                         //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
                         ///SORT AND FILTER- i is column number 
-                        xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
-                        xlRange.AutoFilter(i, "<100");
+                        xlRangeNew.Sort(xlRangeNew.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
+                        xlRangeNew.AutoFilter(i, "<100");
+                        xlWorkbook2.SaveAs(@"test.xls");
+
+
+
+
+
+
+                        Excel.Range newRange = xlWorksheetNew.UsedRange;
+
+                        int rowCount = newRange.Rows.Count;
+                        lbl_2.Text = rowCount.ToString(); //This still comes up with 527!
 
                         //COUNT FILTERED ROWS
                         //These were my attempts to count rows- haven't worked
@@ -71,10 +95,10 @@ namespace AutomationApp
                         //sourceRange.Copy(Type.Missing);
 
                         //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
-                        Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B5");
-                        Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
-                        sourceRng.Copy(Type.Missing);
-                        xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                        //Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B5");
+                        //Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
+                        //sourceRng.Copy(Type.Missing);
+                        //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
 
                         //REMOVE FILTER
