@@ -94,14 +94,23 @@ namespace AutomationApp
                 xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
                 xlRange.AutoFilter(i, "<100");
 
-                //COUNT FILTERED ROWS
-                //These were my attempts to count rows- haven't worked
-                //int rowCount = xlRange.Rows.Count;
-                //lbl_2.Text = rowCount.ToString();                        
-                //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
-                //lbl_2.Text = numbRows.ToString();
-                //sourceRange.Copy(Type.Missing);
-
+            //COUNT FILTERED ROWS
+            //These were my attempts to count rows- haven't worked
+            //int rowCount = xlRange.Rows.Count;
+            //lbl_2.Text = rowCount.ToString();                        
+            //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
+            //lbl_2.Text = numbRows.ToString();
+            //sourceRange.Copy(Type.Missing);
+            //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
+            //NOTE, this includes the first row in the count
+              //  int count=0;
+                Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
+               // foreach (Excel.Range area in xlRange3.Areas)
+              //  {
+               //     count += area.Rows.Count;
+               // }
+               // lbl_1.Text = count.ToString();
+                lbl_1.Text = xlRange3.Rows.Count.ToString();
                 //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
                 Excel.Range xlRange2 = xlWorksheet2.get_Range("A2", "A6");
                 Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
