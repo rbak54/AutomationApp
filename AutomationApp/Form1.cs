@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AutomationApp
@@ -52,23 +53,53 @@ namespace AutomationApp
                         Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                         Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                         Excel.Range xlRange = xlWorksheet.UsedRange;
+                        //int rowCount = xlRange.Rows.Count;
+                        //int colCount = xlRange.Columns.Count;
+                        
+                        
+                        Excel.Application xlApp2 = new Excel.Application();
+                        xlApp2.Visible = true;
+                        Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
+                        Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
+                        //Excel.Range xlRange2;
 
-                        int rowCount = xlRange.Rows.Count;
-                        int colCount = xlRange.Columns.Count;
+
                         //int filteredCols;
                         //xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
-                        for (int i=3; i<11; i++) 
-                        {
-                            //filter- i is column number 
-                            //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
-                            xlRange.AutoFilter(i,"<100");
-                            //code to use filtered data-below aren't working, just messing around
-                            //filteredCols =3;
-                            //xlRange=xlWorksheet.get_Range("A1", "A"+filteredCols.ToString());
-                            //back to normal
-                            xlRange.AutoFilter(i);
+                        //for (int i=3; i<11; i++) 
+                        //{
+                        int i = 3;
+                        //filter- i is column number 
+                        //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
+                        //code to use filtered data-below aren't working, just messing around
+                        xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
+                        xlRange.AutoFilter(i, "<100");
+                        //int rowCount = xlRange.Rows.Count;
+                        //lbl_2.Text = rowCount.ToString();
+                        //xlRange2 = xlWorksheet2.get_Range("C1", "C4");
+                        //xlRange2.Insert(xlRange.AutoFilter(i, "<100")); 
+                        Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B4");
+                        Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A5");
+                        sourceRng.Copy(Type.Missing);
+                        //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
+                        xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
-                        }
+
+
+
+                        //Excel.Range sourceRange = xlRange.get_Range("A1", "J10");
+                        //Excel.Range destinationRange = secondWorksheet.get_Range("A15", "J25");
+                        //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
+                        //      lbl_2.Text = numbRows.ToString();
+                        //sourceRange.Copy(Type.Missing);
+                        //destinationRange.PasteSpecial(Microsoft.Office.Interop.Excel.XlPasteType.xlPasteFormulas, Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
+                        //filteredCols =3;
+                        //xlRange=xlWorksheet.get_Range("A1", "A"+filteredCols.ToString());
+                        //back to normal
+                        //xlRange.AutoFilter(i);
+                        xlWorkbook2.SaveAs(@"C:Users\ruthk\Documents\test.xls");
+
+                        //}
 
 
                         //cleanup
@@ -79,8 +110,8 @@ namespace AutomationApp
                         //  ex: [somthing].[something].[something] is bad
 
                         //release com objects to fully kill excel process from running in the background
-                       Marshal.ReleaseComObject(xlRange);
-                       Marshal.ReleaseComObject(xlWorksheet);
+                      //s Marshal.ReleaseComObject(xlRange);
+                        Marshal.ReleaseComObject(xlWorksheet);
 
                         //close and release
                         //xlWorkbook.Close();
