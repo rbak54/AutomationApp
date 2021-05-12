@@ -102,18 +102,24 @@ namespace AutomationApp
             //lbl_2.Text = numbRows.ToString();
             //sourceRange.Copy(Type.Missing);
             //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
-            //NOTE, this includes the first row in the count
-              //  int count=0;
+            //NOTE, this includes the first row in the count, so -1
+            //this counts visible cells
                 Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
-               // foreach (Excel.Range area in xlRange3.Areas)
-              //  {
-               //     count += area.Rows.Count;
-               // }
-               // lbl_1.Text = count.ToString();
-                lbl_1.Text = xlRange3.Rows.Count.ToString();
+             // -1 because of headers  
+                int nFilteredRows = xlRange3.Rows.Count - 1;
+                lbl_1.Text = nFilteredRows.ToString();
                 //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
-                Excel.Range xlRange2 = xlWorksheet2.get_Range("A2", "A6");
-                Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
+                //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
+                int nStartSource = 2;
+                int nEndSource = nStartSource + nFilteredRows - 1;
+                int nStartDestination = 2;
+                int nEndDestination = nStartDestination + nFilteredRows - 1;
+                string startSource = "A" + nStartSource.ToString();
+                string startDestination = "A" + nStartDestination.ToString();
+                string endSource = "A" + nEndSource.ToString();
+                string endDestination = "A" + nEndDestination.ToString();
+                Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
+                Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endDestination);
                 sourceRng.Copy(Type.Missing);
                 xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
