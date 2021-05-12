@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AutomationApp
@@ -23,8 +14,8 @@ namespace AutomationApp
 
         private void btn_1_Click(object sender, EventArgs e)
         {
+            //SELECT FILE AND STORE
             var fileContent = string.Empty;
-            //var filePath = string.Empty;
             string[] filePath;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -36,14 +27,13 @@ namespace AutomationApp
                   
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Get the path of specified file
+                    //Get the path of specified file, View it
                     filePath = openFileDialog.FileNames;
                     string filePathString = string.Join("\n", filePath);
                     lbl_1.Text = filePathString;
 
 
-                    //for each in filePath
-                    //open file
+                    //LOOP THROUGH FILES- if we choose to do this we'll probably want to use a separate output file for each file
                     foreach (string sFileName in filePath)
                     {
                         //https://coderwall.com/p/app3ya/read-excel-file-in-c
@@ -55,49 +45,44 @@ namespace AutomationApp
                         Excel.Range xlRange = xlWorksheet.UsedRange;
                         //int rowCount = xlRange.Rows.Count;
                         //int colCount = xlRange.Columns.Count;
-                        
-                        
+
+                        //create COM objects for intermediate app
                         Excel.Application xlApp2 = new Excel.Application();
                         xlApp2.Visible = true;
                         Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                         Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
-                        //Excel.Range xlRange2;
 
-
-                        //int filteredCols;
-                        //xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
+                        //LOOP THROUGH SAMPLES 
+                        //for loop to repeat for each sample. Can reinstate this later.
                         //for (int i=3; i<11; i++) 
                         //{
                         int i = 3;
-                        //filter- i is column number 
                         //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
-                        //code to use filtered data-below aren't working, just messing around
+                        ///SORT AND FILTER- i is column number 
                         xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
                         xlRange.AutoFilter(i, "<100");
+
+                        //COUNT FILTERED ROWS
+                        //These were my attempts to count rows- haven't worked
                         //int rowCount = xlRange.Rows.Count;
-                        //lbl_2.Text = rowCount.ToString();
-                        //xlRange2 = xlWorksheet2.get_Range("C1", "C4");
-                        //xlRange2.Insert(xlRange.AutoFilter(i, "<100")); 
-                        Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B4");
-                        Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A5");
+                        //lbl_2.Text = rowCount.ToString();                        
+                        //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
+                        //lbl_2.Text = numbRows.ToString();
+                        //sourceRange.Copy(Type.Missing);
+
+                        //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
+                        Excel.Range xlRange2 = xlWorksheet2.get_Range("B1", "B5");
+                        Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A6");
                         sourceRng.Copy(Type.Missing);
-                        //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
                         xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
 
-
-
-                        //Excel.Range sourceRange = xlRange.get_Range("A1", "J10");
-                        //Excel.Range destinationRange = secondWorksheet.get_Range("A15", "J25");
-                        //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
-                        //      lbl_2.Text = numbRows.ToString();
-                        //sourceRange.Copy(Type.Missing);
-                        //destinationRange.PasteSpecial(Microsoft.Office.Interop.Excel.XlPasteType.xlPasteFormulas, Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
-                        //filteredCols =3;
-                        //xlRange=xlWorksheet.get_Range("A1", "A"+filteredCols.ToString());
-                        //back to normal
+                        //REMOVE FILTER
                         //xlRange.AutoFilter(i);
-                        xlWorkbook2.SaveAs(@"C:Users\ruthk\Documents\test.xls");
+
+                        //SAVE INTERMEDIATE DOCUMENT
+                        //xlWorkbook2.SaveAs(@"test.xls");
+
 
                         //}
 
@@ -105,24 +90,35 @@ namespace AutomationApp
                         //cleanup
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
-                                               //rule of thumb for releasing com objects:
+                        //rule of thumb for releasing com objects:
                         //  never use two dots, all COM objects must be referenced and released individually
                         //  ex: [somthing].[something].[something] is bad
 
                         //release com objects to fully kill excel process from running in the background
-                      //s Marshal.ReleaseComObject(xlRange);
+                        Marshal.ReleaseComObject(xlRange);
                         Marshal.ReleaseComObject(xlWorksheet);
-
+                        Marshal.ReleaseComObject(xlRange2);
+                        Marshal.ReleaseComObject(xlWorksheet2);
+                        Marshal.ReleaseComObject(sourceRng);
                         //close and release
                         //xlWorkbook.Close();
-                        Marshal.ReleaseComObject(xlWorkbook);
+                        //xlWorkbook2.Close();
+
+                        //Marshal.ReleaseComObject(xlWorkbook);
+                        //Marshal.ReleaseComObject(xlWorkbook2);
+
 
                         //quit and release
-                        xlApp.Quit();
+                        //xlApp.Quit();
+                        //xlApp2.Quit();
+
                         Marshal.ReleaseComObject(xlApp);
-                  }
-                    // edit file
-                    // make word file
+                        Marshal.ReleaseComObject(xlApp2);
+
+
+                        // TRANSPOSE RESULTS
+                        // MAKE WORD FILE?
+                    }
                 }
             }
         }
