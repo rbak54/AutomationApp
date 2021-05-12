@@ -69,6 +69,7 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
+                //insert HODS codes
                 xlWorksheet2.Cells[1, 1] = box_0101.Text;
                 xlWorksheet2.Cells[1, 2] = box_0102.Text;
                 xlWorksheet2.Cells[1, 3] = box_0103.Text;
