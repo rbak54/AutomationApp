@@ -50,6 +50,7 @@ namespace AutomationApp
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -231,11 +232,21 @@ namespace AutomationApp
             this.label2.Text = "Select a file first, enter HODS codes in the relevant boxes, then click \'Submit\'";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(28, 399);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "label11";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -288,6 +299,7 @@ namespace AutomationApp
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label11;
     }
 }
 

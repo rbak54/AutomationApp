@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
 
 namespace AutomationApp
 {
@@ -136,9 +137,13 @@ namespace AutomationApp
                     //REMOVE FILTER
                     xlRangeCopy.AutoFilter(i);
 
+                    //SAVE OUTPUT DOCUMENT
+                    string fileName = Path.GetFileName(sFileName);
+                    label11.Text = fileName;
+                    //xlWorkbook2.SaveAs(@"test.xls");
                 }
-                //SAVE INTERMEDIATE DOCUMENT
-                //xlWorkbook2.SaveAs(@"test.xls");
+
+                
 
                 //cleanup
                 GC.Collect();
