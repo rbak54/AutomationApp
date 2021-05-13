@@ -49,6 +49,7 @@ namespace AutomationApp
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -220,11 +221,23 @@ namespace AutomationApp
             this.label10.TabIndex = 21;
             this.label10.Text = "IonCode_0101";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(115, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(535, 16);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Select a file first, enter HODS codes in the relevant boxes, then click \'Submit\'";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -275,6 +288,7 @@ namespace AutomationApp
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label2;
     }
 }
 
