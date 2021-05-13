@@ -83,6 +83,7 @@ namespace AutomationApp
             // box_0108
             // 
             this.box_0108.Location = new System.Drawing.Point(322, 322);
+            this.box_0108.MaxLength = 5;
             this.box_0108.Name = "box_0108";
             this.box_0108.Size = new System.Drawing.Size(100, 20);
             this.box_0108.TabIndex = 3;
@@ -91,6 +92,7 @@ namespace AutomationApp
             // box_0102
             // 
             this.box_0102.Location = new System.Drawing.Point(322, 163);
+            this.box_0102.MaxLength = 5;
             this.box_0102.Name = "box_0102";
             this.box_0102.Size = new System.Drawing.Size(100, 20);
             this.box_0102.TabIndex = 4;
@@ -99,6 +101,7 @@ namespace AutomationApp
             // box_0103
             // 
             this.box_0103.Location = new System.Drawing.Point(322, 189);
+            this.box_0103.MaxLength = 5;
             this.box_0103.Name = "box_0103";
             this.box_0103.Size = new System.Drawing.Size(100, 20);
             this.box_0103.TabIndex = 5;
@@ -107,6 +110,7 @@ namespace AutomationApp
             // box_0104
             // 
             this.box_0104.Location = new System.Drawing.Point(322, 215);
+            this.box_0104.MaxLength = 5;
             this.box_0104.Name = "box_0104";
             this.box_0104.Size = new System.Drawing.Size(100, 20);
             this.box_0104.TabIndex = 6;
@@ -115,6 +119,7 @@ namespace AutomationApp
             // box_0105
             // 
             this.box_0105.Location = new System.Drawing.Point(322, 241);
+            this.box_0105.MaxLength = 5;
             this.box_0105.Name = "box_0105";
             this.box_0105.Size = new System.Drawing.Size(100, 20);
             this.box_0105.TabIndex = 7;
@@ -123,6 +128,7 @@ namespace AutomationApp
             // box_0106
             // 
             this.box_0106.Location = new System.Drawing.Point(322, 270);
+            this.box_0106.MaxLength = 5;
             this.box_0106.Name = "box_0106";
             this.box_0106.Size = new System.Drawing.Size(100, 20);
             this.box_0106.TabIndex = 8;
@@ -131,6 +137,7 @@ namespace AutomationApp
             // box_0107
             // 
             this.box_0107.Location = new System.Drawing.Point(322, 296);
+            this.box_0107.MaxLength = 5;
             this.box_0107.Name = "box_0107";
             this.box_0107.Size = new System.Drawing.Size(100, 20);
             this.box_0107.TabIndex = 9;
@@ -167,7 +174,7 @@ namespace AutomationApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(245, 325);
+            this.label3.Location = new System.Drawing.Point(243, 325);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 14;
@@ -176,7 +183,7 @@ namespace AutomationApp
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(245, 300);
+            this.label4.Location = new System.Drawing.Point(243, 300);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 15;
@@ -185,7 +192,7 @@ namespace AutomationApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(245, 273);
+            this.label5.Location = new System.Drawing.Point(243, 273);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 16;
@@ -194,7 +201,7 @@ namespace AutomationApp
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(245, 244);
+            this.label6.Location = new System.Drawing.Point(243, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 13);
             this.label6.TabIndex = 17;
@@ -203,7 +210,7 @@ namespace AutomationApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 219);
+            this.label7.Location = new System.Drawing.Point(243, 219);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 18;
@@ -212,7 +219,7 @@ namespace AutomationApp
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(245, 192);
+            this.label8.Location = new System.Drawing.Point(243, 192);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 19;
@@ -221,7 +228,7 @@ namespace AutomationApp
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(245, 166);
+            this.label9.Location = new System.Drawing.Point(243, 166);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 20;
@@ -231,7 +238,7 @@ namespace AutomationApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(245, 140);
+            this.label10.Location = new System.Drawing.Point(243, 140);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 21;
@@ -251,7 +258,7 @@ namespace AutomationApp
             // warningLabel
             // 
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(491, 372);
+            this.warningLabel.Location = new System.Drawing.Point(481, 388);
             this.warningLabel.Name = "warningLabel";
             this.warningLabel.Size = new System.Drawing.Size(0, 13);
             this.warningLabel.TabIndex = 23;
