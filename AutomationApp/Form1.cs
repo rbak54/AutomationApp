@@ -68,12 +68,50 @@ namespace AutomationApp
                         //xlRange.Sort(xlRange.Columns[3], Excel.XlSortOrder.xlAscending) ;
                         //for (int i=3; i<11; i++) 
                         //{
-                        int i = 3;
+
+                       int lastUsedColumn = xlWorksheet.Cells.Find("*", System.Reflection.Missing.Value,
+                               System.Reflection.Missing.Value, System.Reflection.Missing.Value,
+                               Excel.XlSearchOrder.xlByColumns, Excel.XlSearchDirection.xlPrevious,
+                               false, System.Reflection.Missing.Value, System.Reflection.Missing.Value).Column;
+
+
+                        ///RichTextBox box = new RichTextBox();
+
+                        int rCnt = 0;
+                        int cCnt = 0;
+                        int i = 3; 
+
+
+                        Excel._Worksheet column_rearrangement = xlWorksheet2;
+                        Excel.Range xlRange1 = xlWorksheet.UsedRange;
+                        xlRange1.Sort(xlRange1.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
+                        column_rearrangement = xlRange1.AutoFilter(i, "<100");
+                        Excel.Range rangeNew = column_rearrangement.UsedRange;
+
+                        Excel.Range xlRange3 = xlWorksheet2.get_Range("B1", "B4");
+                        Excel.Range sourceRng4 = xlWorksheet.get_Range("A2", "A5");
+                        sourceRng4.Copy(Type.Missing);
+
+
+                        Excel.Range range = xlWorksheet2.UsedRange;
+
+                        rCnt = xlRange1.Rows.Count;
+                        cCnt = xlRange1.Columns.Count;
+
+                        for (int ih = 3; i < 4; ih++)  {
+  
+                        }
+
+                        richTextBox1.Text = rangeNew.ToString();
+
+                        ///richTextBox1.Text += cCnt.ToString();
+
+
                         //filter- i is column number 
                         //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
                         //code to use filtered data-below aren't working, just messing around
-                        xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes); xlWorksheet2.Cells[1, 1] = "Test";
-                        xlRange.AutoFilter(i, "<100");
+
+
                         //int rowCount = xlRange.Rows.Count;
                         //lbl_2.Text = rowCount.ToString();
                         //xlRange2 = xlWorksheet2.get_Range("C1", "C4");
@@ -82,7 +120,7 @@ namespace AutomationApp
                         Excel.Range sourceRng = xlWorksheet.get_Range("A2", "A5");
                         sourceRng.Copy(Type.Missing);
                         //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
-                        xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                        ///xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
 
 
@@ -97,7 +135,7 @@ namespace AutomationApp
                         //xlRange=xlWorksheet.get_Range("A1", "A"+filteredCols.ToString());
                         //back to normal
                         //xlRange.AutoFilter(i);
-                        xlWorkbook2.SaveAs(@"C:Users\ruthk\Documents\test.xls");
+                        xlWorkbook2.SaveAs(@"C:\Users\YJu\Documents\HODSautomation");
 
                         //}
 
@@ -131,5 +169,7 @@ namespace AutomationApp
         {
 
         }
+
+
     }
 }

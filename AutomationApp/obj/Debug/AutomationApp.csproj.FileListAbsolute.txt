@@ -8,3 +8,13 @@ C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.
 C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.exe
 C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.pdb
 C:\Users\ruthk\source\repos\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csprojAssemblyReference.cache
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\bin\Debug\AutomationApp.exe.config
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\bin\Debug\AutomationApp.exe
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\bin\Debug\AutomationApp.pdb
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csprojAssemblyReference.cache
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.Form1.resources
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.Properties.Resources.resources
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csproj.GenerateResource.cache
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.csproj.CoreCompileInputs.cache
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.exe
+C:\Users\YJu\Source\Repos\rbak54\AutomationApp\AutomationApp\obj\Debug\AutomationApp.pdb
