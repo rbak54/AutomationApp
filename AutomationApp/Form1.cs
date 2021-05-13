@@ -140,8 +140,9 @@ namespace AutomationApp
                 }
 
                 //SAVE OUTPUT DOCUMENT
-                string fileName = Path.GetFileName(sFileName); //retreives the filename from the path                
-                xlWorkbook2.SaveAs(@"output_" + fileName);
+                string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
+                string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_" + fileName); 
 
                 //cleanup
                 GC.Collect();
