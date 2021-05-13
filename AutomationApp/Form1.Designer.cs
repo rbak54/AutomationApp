@@ -51,6 +51,7 @@ namespace AutomationApp
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
+            this.textWarning1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -124,9 +125,11 @@ namespace AutomationApp
             // box_0101
             // 
             this.box_0101.Location = new System.Drawing.Point(322, 137);
+            this.box_0101.MaxLength = 5;
             this.box_0101.Name = "box_0101";
             this.box_0101.Size = new System.Drawing.Size(100, 20);
             this.box_0101.TabIndex = 10;
+            this.box_0101.TextChanged += new System.EventHandler(this.box_0101_TextChanged);
             // 
             // btn_2
             // 
@@ -239,11 +242,21 @@ namespace AutomationApp
             this.warningLabel.Size = new System.Drawing.Size(0, 13);
             this.warningLabel.TabIndex = 23;
             // 
+            // textWarning1
+            // 
+            this.textWarning1.AutoSize = true;
+            this.textWarning1.Location = new System.Drawing.Point(491, 137);
+            this.textWarning1.Name = "textWarning1";
+            this.textWarning1.Size = new System.Drawing.Size(41, 13);
+            this.textWarning1.TabIndex = 24;
+            this.textWarning1.Text = "label11";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textWarning1);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
@@ -298,6 +311,7 @@ namespace AutomationApp
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label warningLabel;
+        private System.Windows.Forms.Label textWarning1;
     }
 }
 

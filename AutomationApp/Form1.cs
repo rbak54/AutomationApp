@@ -188,8 +188,21 @@ namespace AutomationApp
 
         }
 
-
-
-
+        private void box_0101_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0101.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0101.Text, out _) && box_0101.Text.Length == 5){
+                textWarning1.ForeColor = Color.Green;
+                textWarning1.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning1.ForeColor = Color.Red;
+                textWarning1.Text = "Invalid Input";
+            }
+        }
     }
 }
