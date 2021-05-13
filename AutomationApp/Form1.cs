@@ -77,8 +77,8 @@ namespace AutomationApp
                 xlRange.Copy(Type.Missing);
                 xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
-                //Close the original doc without saving it
-                //xlWorkbook.Close(); // Promtps user about clipboard which is annoying
+                
+                
 
                 //create COM objects for intermediate app
                 Excel.Application xlApp2 = new Excel.Application();
@@ -131,7 +131,7 @@ namespace AutomationApp
                 string endSource = "A" + nEndSource.ToString();
                 string endDestination = "A" + nEndDestination.ToString();
                 Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
-                Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endDestination);
+                Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endDestination);
                 sourceRng.Copy(Type.Missing);
                 xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
@@ -141,10 +141,12 @@ namespace AutomationApp
 
                 //SAVE INTERMEDIATE DOCUMENT
                 //xlWorkbook2.SaveAs(@"test.xls");
-                
+
 
                 //}
 
+                //Close orginal document
+                
 
                 //cleanup
                 GC.Collect();
