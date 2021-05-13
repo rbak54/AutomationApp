@@ -70,9 +70,13 @@ namespace AutomationApp
                 Excel._Worksheet xlWorksheetCopy = xlWorkbookCopy.Sheets[1];
 
                 //Copy all contents from selected file to the new excel doc
+                int nRows = xlRange.Rows.Count;
+                int nEndDestinationCopy = nRows;
+                string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
+                Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
+                xlRange.Copy(Type.Missing);
+                xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
-                
-                
                 //create COM objects for intermediate app
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = true;
