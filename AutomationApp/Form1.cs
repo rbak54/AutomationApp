@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Drawing;
 
 namespace AutomationApp
 {
@@ -50,6 +51,15 @@ namespace AutomationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+             if (lbl_1.Text == "Please Select a File")
+            {
+                warningLabel.ForeColor = Color.Red;
+                warningLabel.Text = "Please select a file before you continuing";
+                return;
+            }
+
+            warningLabel.Text = "";
+
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -178,9 +188,8 @@ namespace AutomationApp
 
         }
 
-        private void lbl_1_Click(object sender, EventArgs e)
-        {
 
-        }
+
+
     }
 }

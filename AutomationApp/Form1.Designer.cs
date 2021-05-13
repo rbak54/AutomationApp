@@ -50,6 +50,7 @@ namespace AutomationApp
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -70,7 +71,6 @@ namespace AutomationApp
             this.lbl_1.Size = new System.Drawing.Size(100, 13);
             this.lbl_1.TabIndex = 1;
             this.lbl_1.Text = "Please Select a File";
-            this.lbl_1.Click += new System.EventHandler(this.lbl_1_Click);
             // 
             // box_0108
             // 
@@ -231,11 +231,20 @@ namespace AutomationApp
             this.label2.Text = "Select a file first, enter HODS codes in the relevant boxes, then click \'Submit\'";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // warningLabel
+            // 
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.Location = new System.Drawing.Point(491, 372);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(0, 13);
+            this.warningLabel.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -288,6 +297,7 @@ namespace AutomationApp
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label warningLabel;
     }
 }
 
