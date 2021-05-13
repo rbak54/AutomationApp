@@ -50,6 +50,15 @@ namespace AutomationApp
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.warningLabel = new System.Windows.Forms.Label();
+            this.textWarning1 = new System.Windows.Forms.Label();
+            this.textWarning2 = new System.Windows.Forms.Label();
+            this.textWarning3 = new System.Windows.Forms.Label();
+            this.textWarning4 = new System.Windows.Forms.Label();
+            this.textWarning5 = new System.Windows.Forms.Label();
+            this.textWarning6 = new System.Windows.Forms.Label();
+            this.textWarning7 = new System.Windows.Forms.Label();
+            this.textWarning8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -70,63 +79,78 @@ namespace AutomationApp
             this.lbl_1.Size = new System.Drawing.Size(100, 13);
             this.lbl_1.TabIndex = 1;
             this.lbl_1.Text = "Please Select a File";
-            this.lbl_1.Click += new System.EventHandler(this.lbl_1_Click);
             // 
             // box_0108
             // 
             this.box_0108.Location = new System.Drawing.Point(322, 322);
+            this.box_0108.MaxLength = 5;
             this.box_0108.Name = "box_0108";
             this.box_0108.Size = new System.Drawing.Size(100, 20);
             this.box_0108.TabIndex = 3;
+            this.box_0108.TextChanged += new System.EventHandler(this.box_0108_TextChanged);
             // 
             // box_0102
             // 
             this.box_0102.Location = new System.Drawing.Point(322, 163);
+            this.box_0102.MaxLength = 5;
             this.box_0102.Name = "box_0102";
             this.box_0102.Size = new System.Drawing.Size(100, 20);
             this.box_0102.TabIndex = 4;
+            this.box_0102.TextChanged += new System.EventHandler(this.box_0102_TextChanged);
             // 
             // box_0103
             // 
             this.box_0103.Location = new System.Drawing.Point(322, 189);
+            this.box_0103.MaxLength = 5;
             this.box_0103.Name = "box_0103";
             this.box_0103.Size = new System.Drawing.Size(100, 20);
             this.box_0103.TabIndex = 5;
+            this.box_0103.TextChanged += new System.EventHandler(this.box_0103_TextChanged);
             // 
             // box_0104
             // 
             this.box_0104.Location = new System.Drawing.Point(322, 215);
+            this.box_0104.MaxLength = 5;
             this.box_0104.Name = "box_0104";
             this.box_0104.Size = new System.Drawing.Size(100, 20);
             this.box_0104.TabIndex = 6;
+            this.box_0104.TextChanged += new System.EventHandler(this.box_0104_TextChanged);
             // 
             // box_0105
             // 
             this.box_0105.Location = new System.Drawing.Point(322, 241);
+            this.box_0105.MaxLength = 5;
             this.box_0105.Name = "box_0105";
             this.box_0105.Size = new System.Drawing.Size(100, 20);
             this.box_0105.TabIndex = 7;
+            this.box_0105.TextChanged += new System.EventHandler(this.box_0105_TextChanged);
             // 
             // box_0106
             // 
             this.box_0106.Location = new System.Drawing.Point(322, 270);
+            this.box_0106.MaxLength = 5;
             this.box_0106.Name = "box_0106";
             this.box_0106.Size = new System.Drawing.Size(100, 20);
             this.box_0106.TabIndex = 8;
+            this.box_0106.TextChanged += new System.EventHandler(this.box_0106_TextChanged);
             // 
             // box_0107
             // 
             this.box_0107.Location = new System.Drawing.Point(322, 296);
+            this.box_0107.MaxLength = 5;
             this.box_0107.Name = "box_0107";
             this.box_0107.Size = new System.Drawing.Size(100, 20);
             this.box_0107.TabIndex = 9;
+            this.box_0107.TextChanged += new System.EventHandler(this.box_0107_TextChanged);
             // 
             // box_0101
             // 
             this.box_0101.Location = new System.Drawing.Point(322, 137);
+            this.box_0101.MaxLength = 5;
             this.box_0101.Name = "box_0101";
             this.box_0101.Size = new System.Drawing.Size(100, 20);
             this.box_0101.TabIndex = 10;
+            this.box_0101.TextChanged += new System.EventHandler(this.box_0101_TextChanged);
             // 
             // btn_2
             // 
@@ -150,7 +174,7 @@ namespace AutomationApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(245, 325);
+            this.label3.Location = new System.Drawing.Point(243, 325);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 14;
@@ -159,7 +183,7 @@ namespace AutomationApp
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(245, 300);
+            this.label4.Location = new System.Drawing.Point(243, 300);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 15;
@@ -168,7 +192,7 @@ namespace AutomationApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(245, 273);
+            this.label5.Location = new System.Drawing.Point(243, 273);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 16;
@@ -177,7 +201,7 @@ namespace AutomationApp
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(245, 244);
+            this.label6.Location = new System.Drawing.Point(243, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 13);
             this.label6.TabIndex = 17;
@@ -186,7 +210,7 @@ namespace AutomationApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 219);
+            this.label7.Location = new System.Drawing.Point(243, 219);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 18;
@@ -195,7 +219,7 @@ namespace AutomationApp
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(245, 192);
+            this.label8.Location = new System.Drawing.Point(243, 192);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 13);
             this.label8.TabIndex = 19;
@@ -204,7 +228,7 @@ namespace AutomationApp
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(245, 166);
+            this.label9.Location = new System.Drawing.Point(243, 166);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 20;
@@ -214,7 +238,7 @@ namespace AutomationApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(245, 140);
+            this.label10.Location = new System.Drawing.Point(243, 140);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 21;
@@ -231,11 +255,92 @@ namespace AutomationApp
             this.label2.Text = "Select a file first, enter HODS codes in the relevant boxes, then click \'Submit\'";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // warningLabel
+            // 
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.Location = new System.Drawing.Point(481, 388);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(0, 13);
+            this.warningLabel.TabIndex = 23;
+            // 
+            // textWarning1
+            // 
+            this.textWarning1.AutoSize = true;
+            this.textWarning1.Location = new System.Drawing.Point(481, 137);
+            this.textWarning1.Name = "textWarning1";
+            this.textWarning1.Size = new System.Drawing.Size(0, 13);
+            this.textWarning1.TabIndex = 24;
+            // 
+            // textWarning2
+            // 
+            this.textWarning2.AutoSize = true;
+            this.textWarning2.Location = new System.Drawing.Point(481, 163);
+            this.textWarning2.Name = "textWarning2";
+            this.textWarning2.Size = new System.Drawing.Size(0, 13);
+            this.textWarning2.TabIndex = 25;
+            // 
+            // textWarning3
+            // 
+            this.textWarning3.AutoSize = true;
+            this.textWarning3.Location = new System.Drawing.Point(481, 189);
+            this.textWarning3.Name = "textWarning3";
+            this.textWarning3.Size = new System.Drawing.Size(0, 13);
+            this.textWarning3.TabIndex = 26;
+            // 
+            // textWarning4
+            // 
+            this.textWarning4.AutoSize = true;
+            this.textWarning4.Location = new System.Drawing.Point(481, 215);
+            this.textWarning4.Name = "textWarning4";
+            this.textWarning4.Size = new System.Drawing.Size(0, 13);
+            this.textWarning4.TabIndex = 27;
+            // 
+            // textWarning5
+            // 
+            this.textWarning5.AutoSize = true;
+            this.textWarning5.Location = new System.Drawing.Point(481, 241);
+            this.textWarning5.Name = "textWarning5";
+            this.textWarning5.Size = new System.Drawing.Size(0, 13);
+            this.textWarning5.TabIndex = 28;
+            // 
+            // textWarning6
+            // 
+            this.textWarning6.AutoSize = true;
+            this.textWarning6.Location = new System.Drawing.Point(481, 270);
+            this.textWarning6.Name = "textWarning6";
+            this.textWarning6.Size = new System.Drawing.Size(0, 13);
+            this.textWarning6.TabIndex = 29;
+            // 
+            // textWarning7
+            // 
+            this.textWarning7.AutoSize = true;
+            this.textWarning7.Location = new System.Drawing.Point(481, 296);
+            this.textWarning7.Name = "textWarning7";
+            this.textWarning7.Size = new System.Drawing.Size(0, 13);
+            this.textWarning7.TabIndex = 30;
+            // 
+            // textWarning8
+            // 
+            this.textWarning8.AutoSize = true;
+            this.textWarning8.Location = new System.Drawing.Point(481, 322);
+            this.textWarning8.Name = "textWarning8";
+            this.textWarning8.Size = new System.Drawing.Size(0, 13);
+            this.textWarning8.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textWarning8);
+            this.Controls.Add(this.textWarning7);
+            this.Controls.Add(this.textWarning6);
+            this.Controls.Add(this.textWarning5);
+            this.Controls.Add(this.textWarning4);
+            this.Controls.Add(this.textWarning3);
+            this.Controls.Add(this.textWarning2);
+            this.Controls.Add(this.textWarning1);
+            this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -288,6 +393,15 @@ namespace AutomationApp
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label warningLabel;
+        private System.Windows.Forms.Label textWarning1;
+        private System.Windows.Forms.Label textWarning2;
+        private System.Windows.Forms.Label textWarning3;
+        private System.Windows.Forms.Label textWarning4;
+        private System.Windows.Forms.Label textWarning5;
+        private System.Windows.Forms.Label textWarning6;
+        private System.Windows.Forms.Label textWarning7;
+        private System.Windows.Forms.Label textWarning8;
     }
 }
 

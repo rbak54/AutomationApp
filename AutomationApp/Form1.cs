@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Drawing;
 
 namespace AutomationApp
 {
@@ -50,6 +51,15 @@ namespace AutomationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+             if (lbl_1.Text == "Please Select a File")
+            {
+                warningLabel.ForeColor = Color.Red;
+                warningLabel.Text = "Please select a file before continuing";
+                return;
+            }
+
+            warningLabel.Text = "";
+
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -178,9 +188,147 @@ namespace AutomationApp
 
         }
 
-        private void lbl_1_Click(object sender, EventArgs e)
+        private void box_0101_TextChanged(object sender, EventArgs e)
         {
+            if (box_0101.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0101.Text, out _) && box_0101.Text.Length == 5){
+                textWarning1.ForeColor = Color.Green;
+                textWarning1.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning1.ForeColor = Color.Red;
+                textWarning1.Text = "Invalid Input";
+            }
+        }
 
+        private void box_0102_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0102.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0102.Text, out _) && box_0102.Text.Length == 5)
+            {
+                textWarning2.ForeColor = Color.Green;
+                textWarning2.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning2.ForeColor = Color.Red;
+                textWarning2.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0103_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0103.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0103.Text, out _) && box_0103.Text.Length == 5)
+            {
+                textWarning3.ForeColor = Color.Green;
+                textWarning3.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning3.ForeColor = Color.Red;
+                textWarning3.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0104_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0104.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0104.Text, out _) && box_0104.Text.Length == 5)
+            {
+                textWarning4.ForeColor = Color.Green;
+                textWarning4.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning4.ForeColor = Color.Red;
+                textWarning4.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0105_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0105.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0105.Text, out _) && box_0105.Text.Length == 5)
+            {
+                textWarning5.ForeColor = Color.Green;
+                textWarning5.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning5.ForeColor = Color.Red;
+                textWarning5.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0106_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0106.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0106.Text, out _) && box_0106.Text.Length == 5)
+            {
+                textWarning6.ForeColor = Color.Green;
+                textWarning6.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning6.ForeColor = Color.Red;
+                textWarning6.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0107_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0107.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0107.Text, out _) && box_0107.Text.Length == 5)
+            {
+                textWarning7.ForeColor = Color.Green;
+                textWarning7.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning7.ForeColor = Color.Red;
+                textWarning7.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0108_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0108.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0108.Text, out _) && box_0108.Text.Length == 5)
+            {
+                textWarning8.ForeColor = Color.Green;
+                textWarning8.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning8.ForeColor = Color.Red;
+                textWarning8.Text = "Invalid Input";
+            }
         }
     }
 }
