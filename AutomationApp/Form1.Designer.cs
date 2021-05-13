@@ -120,7 +120,6 @@ namespace AutomationApp
             this.box_0107.Name = "box_0107";
             this.box_0107.Size = new System.Drawing.Size(100, 20);
             this.box_0107.TabIndex = 9;
-            this.box_0107.Text = " ";
             // 
             // box_0101
             // 
