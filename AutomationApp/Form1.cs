@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+///using System.Collections.Generic.Dictionary;
+
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
 
 namespace AutomationApp
 {
@@ -83,7 +86,17 @@ namespace AutomationApp
                 //for loop to repeat for each sample. Can reinstate this later.
                 //for (int i=3; i<11; i++) 
                 //{
-                int i = 3;
+               /// int i = 3;
+
+
+                for (int i =3; i < 11; i++)
+                {
+
+
+
+
+
+                }
                 //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
 
                 //PUT SAMPLE NAME IN EXCEL
@@ -113,6 +126,7 @@ namespace AutomationApp
                 string startDestination = "A" + nStartDestination.ToString();
                 string endSource = "A" + nEndSource.ToString();
                 string endDestination = "A" + nEndDestination.ToString();
+
                 Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                 Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endDestination);
                 sourceRng.Copy(Type.Missing);
@@ -171,5 +185,8 @@ namespace AutomationApp
         {
 
         }
+
+
+
     }
 }
