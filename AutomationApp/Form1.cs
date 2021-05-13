@@ -63,6 +63,16 @@ namespace AutomationApp
                 //int rowCount = xlRange.Rows.Count;
                 //int colCount = xlRange.Columns.Count;
 
+                //create COM objects for copy of original document
+                Excel.Application xlAppCopy = new Excel.Application();
+                xlAppCopy.Visible = true;
+                Excel.Workbook xlWorkbookCopy = xlAppCopy.Workbooks.Add();
+                Excel._Worksheet xlWorksheetCopy = xlWorkbookCopy.Sheets[1];
+
+                //Copy all contents from selected file to the new excel doc
+
+                
+                
                 //create COM objects for intermediate app
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = true;
