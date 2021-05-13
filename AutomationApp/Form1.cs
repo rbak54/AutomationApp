@@ -81,53 +81,50 @@ namespace AutomationApp
 
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
-                //for (int i=3; i<11; i++) 
-                //{
-                int i = 3;
-                //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
+                for (int sample=1; sample<9; sample++) 
+                {
+                    //i is the row we're interested in
+                    int i = sample + 2;
+                    //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
 
-                //PUT SAMPLE NAME IN EXCEL
-
-
+                    //PUT SAMPLE NAME IN EXCEL
                 
-                ///SORT AND FILTER- i is column number 
-                xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
-                xlRange.AutoFilter(i, "<100");
-
-            //COUNT FILTERED ROWS
-            //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
-            //NOTE, this includes the first row in the count, so -1
-            //this counts visible cells
-                Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
-             // -1 because of headers  
-                int nFilteredRows = xlRange3.Rows.Count - 1;
-                lbl_1.Text = nFilteredRows.ToString();
-                //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
-                //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
                 
-                int nStartSource = 2;
-                int nEndSource = nStartSource + nFilteredRows - 1;
-                int nStartDestination = 2;
-                int nEndDestination = nStartDestination + nFilteredRows - 1;
-                string startSource = "A" + nStartSource.ToString();
-                string startDestination = "A" + nStartDestination.ToString();
-                string endSource = "A" + nEndSource.ToString();
-                string endDestination = "A" + nEndDestination.ToString();
-                Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
-                Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endDestination);
-                sourceRng.Copy(Type.Missing);
-                xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    ///SORT AND FILTER- i is column number 
+                    xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
+                    xlRange.AutoFilter(i, "<100");
+
+                     //COUNT FILTERED ROWS
+                    //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
+                    //NOTE, this includes the first row in the count, so -1
+                    //this counts visible cells
+                    Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
+                    // -1 because of headers  
+                    int nFilteredRows = xlRange3.Rows.Count - 1;
+                    string sampleLetter = ((char)(sample + 64)).ToString();
+                    //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
+                    //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
+
+                    int nStartSource = 2;
+                    int nEndSource = nStartSource + nFilteredRows - 1;
+                    int nStartDestination = 2;
+                    int nEndDestination = nStartDestination + nFilteredRows - 1;
+                    string startSource = "A" + nStartSource.ToString();
+                    string startDestination = sampleLetter + nStartDestination.ToString();
+                    string endSource = "A" + nEndSource.ToString();
+                    string endDestination = sampleLetter + nEndDestination.ToString();
+                    Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
+                    Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endSource);
+                    sourceRng.Copy(Type.Missing);
+                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
 
-                //REMOVE FILTER
-                xlRange.AutoFilter(i);
+                    //REMOVE FILTER
+                    xlRange.AutoFilter(i);
 
+                }
                 //SAVE INTERMEDIATE DOCUMENT
                 //xlWorkbook2.SaveAs(@"test.xls");
-                
-
-                //}
-
 
                 //cleanup
                 GC.Collect();
@@ -139,9 +136,9 @@ namespace AutomationApp
                 //release com objects to fully kill excel process from running in the background
                 Marshal.ReleaseComObject(xlRange);
                 Marshal.ReleaseComObject(xlWorksheet);
-                Marshal.ReleaseComObject(xlRange2);
+                //Marshal.ReleaseComObject(xlRange2);
                 Marshal.ReleaseComObject(xlWorksheet2);
-                Marshal.ReleaseComObject(sourceRng);
+                //Marshal.ReleaseComObject(sourceRng);
                 //close and release
                 //xlWorkbook.Close(false, Type.Missing, Type.Missing);
                 //xlWorkbook2.Close();
