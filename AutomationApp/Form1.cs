@@ -54,7 +54,7 @@ namespace AutomationApp
              if (lbl_1.Text == "Please Select a File")
             {
                 warningLabel.ForeColor = Color.Red;
-                warningLabel.Text = "Please select a file before you continuing";
+                warningLabel.Text = "Please select a file before continuing";
                 return;
             }
 
