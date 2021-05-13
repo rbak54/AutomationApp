@@ -136,14 +136,12 @@ namespace AutomationApp
 
                     //REMOVE FILTER
                     xlRangeCopy.AutoFilter(i);
-
-                    //SAVE OUTPUT DOCUMENT
-                    string fileName = Path.GetFileName(sFileName);
-                    label11.Text = fileName;
-                    //xlWorkbook2.SaveAs(@"test.xls");
+                   
                 }
 
-                
+                //SAVE OUTPUT DOCUMENT
+                string fileName = Path.GetFileName(sFileName); //retreives the filename from the path                
+                xlWorkbook2.SaveAs(@"output_" + fileName);
 
                 //cleanup
                 GC.Collect();
