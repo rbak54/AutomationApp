@@ -51,7 +51,9 @@ namespace AutomationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-             if (lbl_1.Text == "Please Select a File")
+            /// check if user has selected a file - if not then warn the user and return 
+            /// verify a file has been selected by observing the label lbl_1.
+            if (lbl_1.Text == "Please Select a File")
             {
                 warningLabel.ForeColor = Color.Red;
                 warningLabel.Text = "Please select a file before continuing";
@@ -188,12 +190,19 @@ namespace AutomationApp
 
         }
 
+        /// <summary>
+        /// Validating the input for box_0101 - notifying the user if their input is valid
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void box_0101_TextChanged(object sender, EventArgs e)
         {
             if (box_0101.Text == "")
             {
                 return;
             }
+            /// if text is numerical and length = 5 then the input is valid
             if (int.TryParse(box_0101.Text, out _) && box_0101.Text.Length == 5){
                 textWarning1.ForeColor = Color.Green;
                 textWarning1.Text = "Valid Input";
