@@ -155,6 +155,14 @@ namespace AutomationApp
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
                 xlWorkbook2.SaveAs(directoryName + "/" + "output_" + fileName);
 
+                //Close documents without displaying any prompt boxes
+                xlApp2.DisplayAlerts = false;
+                xlApp2.Quit();
+                xlAppCopy.DisplayAlerts = false;
+                xlAppCopy.Quit();
+                xlApp.DisplayAlerts = false;
+                xlApp.Quit();
+
                 //cleanup
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
