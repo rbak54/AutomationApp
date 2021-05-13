@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
+
 namespace AutomationApp
 {
     public partial class Form1 : Form
@@ -31,8 +32,7 @@ namespace AutomationApp
                     filePath = openFileDialog.FileNames;
                     string filePathString = string.Join("\n", filePath);
                     lbl_1.Text = filePathString;
-                    //LOOP THROUGH FILES- if we choose to do this we'll probably want to use a separate output file for each file
-                    
+                    //btn_2.Enabled = true;                  
                 }
 
             }
@@ -100,8 +100,6 @@ namespace AutomationApp
                     //i is the row we're interested in
                     int i = sample + 2;
                     //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
-
-                    //PUT SAMPLE NAME IN EXCEL
                 
                 
                     ///SORT AND FILTER- i is column number 
@@ -137,6 +135,18 @@ namespace AutomationApp
                     xlRangeCopy.AutoFilter(i);
 
                 }
+
+                Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
+                xlRange2Used.Copy(Type.Missing);
+                int rowsXlRange2Used = xlRange2Used.Rows.Count;
+                int colsXlRange2Used = xlRange2Used.Columns.Count;
+                
+                string newRangeStart = "A" + (rowsXlRange2Used +1).ToString();
+                string newRangeEnd= ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used+colsXlRange2Used).ToString();
+
+                Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart,newRangeEnd );
+                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                xlRange2Used.Delete();
                 //SAVE INTERMEDIATE DOCUMENT
                 //xlWorkbook2.SaveAs(@"test.xls");
 
