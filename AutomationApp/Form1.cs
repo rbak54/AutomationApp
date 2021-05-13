@@ -150,6 +150,22 @@ namespace AutomationApp
                     xlRangeCopy.AutoFilter(i);
 
                 }
+
+                //TRANSPOSE FILE
+                Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
+                xlRange2Used.Copy(Type.Missing);
+                int rowsXlRange2Used = xlRange2Used.Rows.Count;
+                int colsXlRange2Used = xlRange2Used.Columns.Count;
+
+                string newRangeStart = "A" + (rowsXlRange2Used + 1).ToString();
+                string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used).ToString();
+
+                Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
+                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                xlRange2Used.Delete();
+
+
+
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
