@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
+using System.IO;
 
 namespace AutomationApp
 {
@@ -149,8 +150,10 @@ namespace AutomationApp
                     xlRangeCopy.AutoFilter(i);
 
                 }
-                //SAVE INTERMEDIATE DOCUMENT
-                //xlWorkbook2.SaveAs(@"test.xls");
+                //SAVE OUTPUT DOCUMENT
+                string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
+                string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_" + fileName);
 
                 //cleanup
                 GC.Collect();
