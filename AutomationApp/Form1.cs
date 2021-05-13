@@ -93,8 +93,8 @@ namespace AutomationApp
                     ///SORT AND FILTER- i is column number 
                     xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
                     xlRange.AutoFilter(i, "<100");
-
-                     //COUNT FILTERED ROWS
+                                        
+                    //COUNT FILTERED ROWS
                     //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
                     //NOTE, this includes the first row in the count, so -1
                     //this counts visible cells
@@ -117,7 +117,7 @@ namespace AutomationApp
                     Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endSource);
                     sourceRng.Copy(Type.Missing);
                     xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
-
+                    xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
                     xlRange.AutoFilter(i);
