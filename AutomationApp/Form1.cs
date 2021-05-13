@@ -95,12 +95,6 @@ namespace AutomationApp
                 xlRange.AutoFilter(i, "<100");
 
             //COUNT FILTERED ROWS
-            //These were my attempts to count rows- haven't worked
-            //int rowCount = xlRange.Rows.Count;
-            //lbl_2.Text = rowCount.ToString();                        
-            //int numbRows = xlWorksheet2.UsedRange.Rows.Count;
-            //lbl_2.Text = numbRows.ToString();
-            //sourceRange.Copy(Type.Missing);
             //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
             //NOTE, this includes the first row in the count, so -1
             //this counts visible cells
@@ -110,6 +104,7 @@ namespace AutomationApp
                 lbl_1.Text = nFilteredRows.ToString();
                 //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
                 //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
+                
                 int nStartSource = 2;
                 int nEndSource = nStartSource + nFilteredRows - 1;
                 int nStartDestination = 2;
@@ -128,7 +123,7 @@ namespace AutomationApp
                 xlRange.AutoFilter(i);
 
                 //SAVE INTERMEDIATE DOCUMENT
-                xlWorkbook2.SaveAs(@"test.xls");
+                //xlWorkbook2.SaveAs(@"test.xls");
                 
 
                 //}
@@ -148,15 +143,15 @@ namespace AutomationApp
                 Marshal.ReleaseComObject(xlWorksheet2);
                 Marshal.ReleaseComObject(sourceRng);
                 //close and release
-                xlWorkbook.Close(false, Type.Missing, Type.Missing);
-                xlWorkbook2.Close();
-                Marshal.ReleaseComObject(xlWorkbook);
-                Marshal.ReleaseComObject(xlWorkbook2);
+                //xlWorkbook.Close(false, Type.Missing, Type.Missing);
+                //xlWorkbook2.Close();
+                //Marshal.ReleaseComObject(xlWorkbook);
+                //Marshal.ReleaseComObject(xlWorkbook2);
 
 
                 //quit and release
-                xlApp.Quit();
-                xlApp2.Quit();
+                //xlApp.Quit();
+               //xlApp2.Quit();
 
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
