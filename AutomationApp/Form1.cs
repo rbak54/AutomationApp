@@ -77,6 +77,9 @@ namespace AutomationApp
                 xlRange.Copy(Type.Missing);
                 xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
 
+                //Close the original doc without saving it
+                //xlWorkbook.Close(); // Promtps user about clipboard which is annoying
+
                 //create COM objects for intermediate app
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = true;
@@ -105,14 +108,14 @@ namespace AutomationApp
 
                 
                 ///SORT AND FILTER- i is column number 
-                xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
-                xlRange.AutoFilter(i, "<100");
+                xlRangeCopy.Sort(xlRangeCopy.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
+                xlRangeCopy.AutoFilter(i, "<100");
 
             //COUNT FILTERED ROWS
             //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
             //NOTE, this includes the first row in the count, so -1
             //this counts visible cells
-                Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
+                Excel.Range xlRange3 = xlRangeCopy.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
              // -1 because of headers  
                 int nFilteredRows = xlRange3.Rows.Count - 1;
                 lbl_1.Text = nFilteredRows.ToString();
@@ -134,7 +137,7 @@ namespace AutomationApp
 
 
                 //REMOVE FILTER
-                xlRange.AutoFilter(i);
+                xlRangeCopy.AutoFilter(i);
 
                 //SAVE INTERMEDIATE DOCUMENT
                 //xlWorkbook2.SaveAs(@"test.xls");
