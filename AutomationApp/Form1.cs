@@ -63,7 +63,21 @@ namespace AutomationApp
                 //int rowCount = xlRange.Rows.Count;
                 //int colCount = xlRange.Columns.Count;
 
-                //create COM objects for intermediate app
+                //create COM objects for copy of original document
+                Excel.Application xlAppCopy = new Excel.Application();
+                xlAppCopy.Visible = true;
+                Excel.Workbook xlWorkbookCopy = xlAppCopy.Workbooks.Add();
+                Excel._Worksheet xlWorksheetCopy = xlWorkbookCopy.Sheets[1];
+
+                //Copy all contents from selected file to the new excel doc
+                int nRows = xlRange.Rows.Count;
+                int nEndDestinationCopy = nRows;
+                string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
+                Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
+                xlRange.Copy(Type.Missing);
+                xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+
+                //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = true;
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
@@ -91,14 +105,14 @@ namespace AutomationApp
                 
                 
                     ///SORT AND FILTER- i is column number 
-                    xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
-                    xlRange.AutoFilter(i, "<100");
+                    xlRangeCopy.Sort(xlRangeCopy.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
+                    xlRangeCopy.AutoFilter(i, "<100");
                                         
                     //COUNT FILTERED ROWS
                     //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
                     //NOTE, this includes the first row in the count, so -1
                     //this counts visible cells
-                    Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
+                    Excel.Range xlRange3 = xlRangeCopy.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
                     // -1 because of headers  
                     int nFilteredRows = xlRange3.Rows.Count - 1;
                     string sampleLetter = ((char)(sample + 64)).ToString();
@@ -114,13 +128,13 @@ namespace AutomationApp
                     string endSource = "A" + nEndSource.ToString();
                     string endDestination = sampleLetter + nEndDestination.ToString();
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
-                    Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endSource);
+                    Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
                     sourceRng.Copy(Type.Missing);
                     xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
-                    xlRange.AutoFilter(i);
+                    xlRangeCopy.AutoFilter(i);
 
                 }
                 //SAVE INTERMEDIATE DOCUMENT
