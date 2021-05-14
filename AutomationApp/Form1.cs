@@ -73,6 +73,18 @@ namespace AutomationApp
 
             warningLabel.Text = "";
 
+            /// check if user has selected a number of files
+            if (comboBox1.SelectedIndex == -1)
+            {
+                warningLabel.ForeColor = Color.Red;
+                warningLabel.Text = "Please select the number of samples in the file";
+                return;
+            }
+
+            warningLabel.Text = "";
+
+
+
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -118,7 +130,7 @@ namespace AutomationApp
 
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
-                for (int sample=1; sample<9; sample++) 
+                for (int sample=1; sample<comboBox1.SelectedIndex +2; sample++) 
                 {
                     //i is the row we're interested in
                     int i = sample + 2;
