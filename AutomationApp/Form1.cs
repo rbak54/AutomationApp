@@ -47,7 +47,8 @@ namespace AutomationApp
 
             for(int i = 1; i < s_number; i++)
             {
-                TextBox tbx = this.Controls.Find("box_0102", true).FirstOrDefault() as TextBox;
+                string box_string = "box_010" + i.ToString();
+                TextBox tbx = this.Controls.Find(box_string, true).FirstOrDefault() as TextBox;
                 tbx.Text = "found!";
 
                 //TextBox box;
@@ -132,7 +133,7 @@ namespace AutomationApp
                 xlWorksheet2.Cells[1, 7] = box_0107.Text;
                 xlWorksheet2.Cells[1, 8] = box_0108.Text;
 
-                box_0101.Hide();
+                
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
                 for (int sample=1; sample<9; sample++) 
