@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
 using System.IO;
+using System.Collections.Generic;
 
 namespace AutomationApp
 {
@@ -12,6 +13,15 @@ namespace AutomationApp
         public Form1()
         {
             InitializeComponent();
+            List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
+        {
+            box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
+        };
+
+            for (int i = 0; i < 8; i++)
+            {
+                textBoxes[i].Hide();
+            }
         }
 
         private void btn_1_Click(object sender, EventArgs e)
@@ -359,6 +369,22 @@ namespace AutomationApp
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+
+      
+            List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
+        {
+            box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
+        };
+            for (int i = 0; i < 8; i++)
+            {
+                textBoxes[i].Hide();
+            }
+
+            for (int i = 0; i < comboBox1.SelectedIndex +1; i++ )
+            {
+                textBoxes[i].Show();
+            }
         }
+
     }
 }

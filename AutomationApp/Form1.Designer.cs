@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.Generic;
+using System.Windows.Forms;
+
 namespace AutomationApp
 {
     partial class Form1
@@ -41,14 +44,14 @@ namespace AutomationApp
             this.box_0101 = new System.Windows.Forms.TextBox();
             this.btn_2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label_8 = new System.Windows.Forms.Label();
+            this.label_7 = new System.Windows.Forms.Label();
+            this.label_6 = new System.Windows.Forms.Label();
+            this.label_5 = new System.Windows.Forms.Label();
+            this.label_4 = new System.Windows.Forms.Label();
+            this.label_3 = new System.Windows.Forms.Label();
+            this.label_2 = new System.Windows.Forms.Label();
+            this.label_1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
             this.textWarning1 = new System.Windows.Forms.Label();
@@ -85,7 +88,7 @@ namespace AutomationApp
             // box_0108
             // 
             this.box_0108.Location = new System.Drawing.Point(322, 322);
-            this.box_0108.MaxLength = 5;
+            this.box_0108.MaxLength = 15;
             this.box_0108.Name = "box_0108";
             this.box_0108.Size = new System.Drawing.Size(100, 20);
             this.box_0108.TabIndex = 3;
@@ -94,7 +97,7 @@ namespace AutomationApp
             // box_0102
             // 
             this.box_0102.Location = new System.Drawing.Point(322, 163);
-            this.box_0102.MaxLength = 5;
+            this.box_0102.MaxLength = 15;
             this.box_0102.Name = "box_0102";
             this.box_0102.Size = new System.Drawing.Size(100, 20);
             this.box_0102.TabIndex = 4;
@@ -103,7 +106,7 @@ namespace AutomationApp
             // box_0103
             // 
             this.box_0103.Location = new System.Drawing.Point(322, 189);
-            this.box_0103.MaxLength = 5;
+            this.box_0103.MaxLength = 15;
             this.box_0103.Name = "box_0103";
             this.box_0103.Size = new System.Drawing.Size(100, 20);
             this.box_0103.TabIndex = 5;
@@ -112,7 +115,7 @@ namespace AutomationApp
             // box_0104
             // 
             this.box_0104.Location = new System.Drawing.Point(322, 215);
-            this.box_0104.MaxLength = 5;
+            this.box_0104.MaxLength = 15;
             this.box_0104.Name = "box_0104";
             this.box_0104.Size = new System.Drawing.Size(100, 20);
             this.box_0104.TabIndex = 6;
@@ -121,7 +124,7 @@ namespace AutomationApp
             // box_0105
             // 
             this.box_0105.Location = new System.Drawing.Point(322, 241);
-            this.box_0105.MaxLength = 5;
+            this.box_0105.MaxLength = 15;
             this.box_0105.Name = "box_0105";
             this.box_0105.Size = new System.Drawing.Size(100, 20);
             this.box_0105.TabIndex = 7;
@@ -130,7 +133,7 @@ namespace AutomationApp
             // box_0106
             // 
             this.box_0106.Location = new System.Drawing.Point(322, 270);
-            this.box_0106.MaxLength = 5;
+            this.box_0106.MaxLength = 15;
             this.box_0106.Name = "box_0106";
             this.box_0106.Size = new System.Drawing.Size(100, 20);
             this.box_0106.TabIndex = 8;
@@ -139,7 +142,7 @@ namespace AutomationApp
             // box_0107
             // 
             this.box_0107.Location = new System.Drawing.Point(322, 296);
-            this.box_0107.MaxLength = 5;
+            this.box_0107.MaxLength = 15;
             this.box_0107.Name = "box_0107";
             this.box_0107.Size = new System.Drawing.Size(100, 20);
             this.box_0107.TabIndex = 9;
@@ -148,10 +151,11 @@ namespace AutomationApp
             // box_0101
             // 
             this.box_0101.Location = new System.Drawing.Point(322, 137);
-            this.box_0101.MaxLength = 5;
+            this.box_0101.MaxLength = 15;
             this.box_0101.Name = "box_0101";
             this.box_0101.Size = new System.Drawing.Size(100, 20);
             this.box_0101.TabIndex = 10;
+            this.box_0101.Visible = false;
             this.box_0101.TextChanged += new System.EventHandler(this.box_0101_TextChanged);
             // 
             // btn_2
@@ -173,78 +177,78 @@ namespace AutomationApp
             this.label1.TabIndex = 12;
             this.label1.Text = "HODS Codes";
             // 
-            // label3
+            // label_8
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 325);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "IonCode_0108";
+            this.label_8.AutoSize = true;
+            this.label_8.Location = new System.Drawing.Point(243, 325);
+            this.label_8.Name = "label_8";
+            this.label_8.Size = new System.Drawing.Size(77, 13);
+            this.label_8.TabIndex = 14;
+            this.label_8.Text = "IonCode_0108";
             // 
-            // label4
+            // label_7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(243, 300);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "IonCode_0107";
+            this.label_7.AutoSize = true;
+            this.label_7.Location = new System.Drawing.Point(243, 300);
+            this.label_7.Name = "label_7";
+            this.label_7.Size = new System.Drawing.Size(77, 13);
+            this.label_7.TabIndex = 15;
+            this.label_7.Text = "IonCode_0107";
             // 
-            // label5
+            // label_6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(243, 273);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "IonCode_0106";
+            this.label_6.AutoSize = true;
+            this.label_6.Location = new System.Drawing.Point(243, 273);
+            this.label_6.Name = "label_6";
+            this.label_6.Size = new System.Drawing.Size(77, 13);
+            this.label_6.TabIndex = 16;
+            this.label_6.Text = "IonCode_0106";
             // 
-            // label6
+            // label_5
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(243, 244);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 13);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "IonCode_0105";
+            this.label_5.AutoSize = true;
+            this.label_5.Location = new System.Drawing.Point(243, 244);
+            this.label_5.Name = "label_5";
+            this.label_5.Size = new System.Drawing.Size(77, 13);
+            this.label_5.TabIndex = 17;
+            this.label_5.Text = "IonCode_0105";
             // 
-            // label7
+            // label_4
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(243, 219);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "IonCode_0104";
+            this.label_4.AutoSize = true;
+            this.label_4.Location = new System.Drawing.Point(243, 219);
+            this.label_4.Name = "label_4";
+            this.label_4.Size = new System.Drawing.Size(77, 13);
+            this.label_4.TabIndex = 18;
+            this.label_4.Text = "IonCode_0104";
             // 
-            // label8
+            // label_3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(243, 192);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "IonCode_0103";
+            this.label_3.AutoSize = true;
+            this.label_3.Location = new System.Drawing.Point(243, 192);
+            this.label_3.Name = "label_3";
+            this.label_3.Size = new System.Drawing.Size(77, 13);
+            this.label_3.TabIndex = 19;
+            this.label_3.Text = "IonCode_0103";
             // 
-            // label9
+            // label_2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(243, 166);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 13);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "IonCode_0102";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.label_2.AutoSize = true;
+            this.label_2.Location = new System.Drawing.Point(243, 166);
+            this.label_2.Name = "label_2";
+            this.label_2.Size = new System.Drawing.Size(77, 13);
+            this.label_2.TabIndex = 20;
+            this.label_2.Text = "IonCode_0102";
+            this.label_2.Click += new System.EventHandler(this.label9_Click);
             // 
-            // label10
+            // label_1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(243, 140);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "IonCode_0101";
+            this.label_1.AutoSize = true;
+            this.label_1.Location = new System.Drawing.Point(243, 140);
+            this.label_1.Name = "label_1";
+            this.label_1.Size = new System.Drawing.Size(77, 13);
+            this.label_1.TabIndex = 21;
+            this.label_1.Text = "IonCode_0101";
             // 
             // label2
             // 
@@ -340,11 +344,7 @@ namespace AutomationApp
             "5",
             "6",
             "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
+            "8"});
             this.comboBox1.Location = new System.Drawing.Point(559, 75);
             this.comboBox1.MaxDropDownItems = 12;
             this.comboBox1.Name = "comboBox1";
@@ -379,14 +379,14 @@ namespace AutomationApp
             this.Controls.Add(this.textWarning1);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_1);
+            this.Controls.Add(this.label_2);
+            this.Controls.Add(this.label_3);
+            this.Controls.Add(this.label_4);
+            this.Controls.Add(this.label_5);
+            this.Controls.Add(this.label_6);
+            this.Controls.Add(this.label_7);
+            this.Controls.Add(this.label_8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.box_0101);
@@ -411,25 +411,29 @@ namespace AutomationApp
 
         private System.Windows.Forms.Button btn_1;
         private System.Windows.Forms.Label lbl_1;
-        private System.Windows.Forms.TextBox box_0108;
+
+        private System.Windows.Forms.TextBox box_0101;
         private System.Windows.Forms.TextBox box_0102;
         private System.Windows.Forms.TextBox box_0103;
         private System.Windows.Forms.TextBox box_0104;
         private System.Windows.Forms.TextBox box_0105;
         private System.Windows.Forms.TextBox box_0106;
         private System.Windows.Forms.TextBox box_0107;
-        private System.Windows.Forms.TextBox box_0101;
+        private System.Windows.Forms.TextBox box_0108;
+
         private System.Windows.Forms.Button btn_2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_8;
+        private System.Windows.Forms.Label label_7;
+        private System.Windows.Forms.Label label_6;
+        private System.Windows.Forms.Label label_5;
+        private System.Windows.Forms.Label label_4;
+        private System.Windows.Forms.Label label_3;
+        private System.Windows.Forms.Label label_2;
+        private System.Windows.Forms.Label label_1;
+
         private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label textWarning1;
         private System.Windows.Forms.Label textWarning2;
@@ -441,6 +445,7 @@ namespace AutomationApp
         private System.Windows.Forms.Label textWarning8;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label11;
+
     }
 }
 
