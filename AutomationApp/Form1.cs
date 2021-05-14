@@ -13,9 +13,16 @@ namespace AutomationApp
         public Form1()
         {
             InitializeComponent();
+            for (int i = 1; i < 9; i++)
+            {
+                string box_string = "box_010" + i.ToString();
+                TextBox tbx = Controls.Find(box_string, true).FirstOrDefault() as TextBox;
+                tbx.Hide();
+            }
         }
 
-        private void btn_1_Click(object sender, EventArgs e)
+        
+    private void btn_1_Click(object sender, EventArgs e)
         {
             //SELECT FILE AND STORE
             var fileContent = string.Empty;
@@ -45,20 +52,11 @@ namespace AutomationApp
             int s_number = comboBox1.SelectedIndex + 1;            
             label12.Text = s_number.ToString();
 
-            for(int i = 1; i < s_number; i++)
+            for(int i = 1; i <= s_number; i++)
             {
                 string box_string = "box_010" + i.ToString();
-                TextBox tbx = this.Controls.Find(box_string, true).FirstOrDefault() as TextBox;
-                tbx.Text = "found!";
-
-                //TextBox box;
-                //TextBox box.ID = "box_0102";
-
-                //string y = "box_0102";
-                //Control[] controls = Controls.Find("box_0102", true);
-                //TextBox box = controls as TextBox;
-                //box.Hide();
-                //TextBox box = Controls.FindControl("box_0102");
+                TextBox tbx = Controls.Find(box_string, true).FirstOrDefault() as TextBox;
+                tbx.Show();
             }
         }
 
