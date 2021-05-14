@@ -36,6 +36,9 @@ namespace AutomationApp
                     //LOOP THROUGH FILES- if we choose to do this we'll probably want to use a separate output file for each file
                     
                 }
+                int numberOfSamples = int.Parse(textBox9.Text);
+                dataGridView1.Visible = true;
+                dataGridView1.Rows.Add(numberOfSamples);
 
             }
         }
@@ -96,20 +99,13 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
-                //insert HODS codes
-                xlWorksheet2.Cells[1, 1] = box_0101.Text;
-                xlWorksheet2.Cells[1, 2] = box_0102.Text;
-                xlWorksheet2.Cells[1, 3] = box_0103.Text;
-                xlWorksheet2.Cells[1, 4] = box_0104.Text;
-                xlWorksheet2.Cells[1, 5] = box_0105.Text;
-                xlWorksheet2.Cells[1, 6] = box_0106.Text;
-                xlWorksheet2.Cells[1, 7] = box_0107.Text;
-                xlWorksheet2.Cells[1, 8] = box_0108.Text;
 
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
-                for (int sample=1; sample<9; sample++) 
+                for (int sample=1; sample<(int.Parse(textBox9.Text)); sample++) 
                 {
+                    xlWorksheet2.Cells[0, sample-1] = dataGridView1[sample, 1].Value.ToString(); ;
+
                     //i is the row we're interested in
                     int i = sample + 2;
                     //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
@@ -368,6 +364,21 @@ namespace AutomationApp
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }
