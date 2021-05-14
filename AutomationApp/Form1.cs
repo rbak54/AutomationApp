@@ -39,6 +39,12 @@ namespace AutomationApp
 
             }
         }
+        private void button_number_Click(object sender, EventArgs e)
+        {
+            int s_number = comboBox1.SelectedIndex + 1;
+            //string ss_number = s_number;
+            label12.Text = s_number.ToString();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -96,6 +102,11 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
+                //Get the number of samples from the combobox
+
+                
+                
+                
                 //insert HODS codes
                 //xlWorksheet2.Cells[1, 1] = box_0101.Text;
                 xlWorksheet2.Cells[1, 2] = box_0102.Text;
@@ -361,5 +372,7 @@ namespace AutomationApp
         {
 
         }
+
+        
     }
 }

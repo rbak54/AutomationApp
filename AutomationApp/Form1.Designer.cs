@@ -61,6 +61,8 @@ namespace AutomationApp
             this.textWarning8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.button_number = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -362,11 +364,32 @@ namespace AutomationApp
             this.label11.Text = "Number of samples";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
+            // button_number
+            // 
+            this.button_number.Location = new System.Drawing.Point(564, 123);
+            this.button_number.Name = "button_number";
+            this.button_number.Size = new System.Drawing.Size(75, 23);
+            this.button_number.TabIndex = 34;
+            this.button_number.Text = "button1";
+            this.button_number.UseVisualStyleBackColor = true;
+            this.button_number.Click += new System.EventHandler(this.button_number_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(568, 185);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "label12";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.button_number);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textWarning8);
@@ -441,6 +464,8 @@ namespace AutomationApp
         private System.Windows.Forms.Label textWarning8;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button_number;
+        private System.Windows.Forms.Label label12;
     }
 }
 
