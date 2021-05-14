@@ -41,7 +41,7 @@ namespace AutomationApp
             {
                 openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "excel|*.xls";
-                openFileDialog.Multiselect = true;
+                openFileDialog.Multiselect = false;
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -99,7 +99,7 @@ namespace AutomationApp
                 //https://coderwall.com/p/app3ya/read-excel-file-in-c
                 //Create COM Objects. Create a COM object for everything that is referenced
                 Excel.Application xlApp = new Excel.Application();
-                xlApp.Visible = true;
+                xlApp.Visible = false;
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
@@ -108,7 +108,7 @@ namespace AutomationApp
 
                 //create COM objects for copy of original document
                 Excel.Application xlAppCopy = new Excel.Application();
-                xlAppCopy.Visible = true;
+                xlAppCopy.Visible = false;
                 Excel.Workbook xlWorkbookCopy = xlAppCopy.Workbooks.Add();
                 Excel._Worksheet xlWorksheetCopy = xlWorkbookCopy.Sheets[1];
 
@@ -122,7 +122,7 @@ namespace AutomationApp
 
                 //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
-                xlApp2.Visible = true;
+                xlApp2.Visible = false;
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
@@ -172,18 +172,40 @@ namespace AutomationApp
                     string endDestination = sampleLetter + nEndDestination.ToString();
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                     Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
-                    sourceRng.Copy(Type.Missing);
-                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    sourceRng.Copy(Type.Missing) ;
+                    //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
                     xlRangeCopy.AutoFilter(i);
 
+                    Marshal.ReleaseComObject(sourceRng);
+                    Marshal.ReleaseComObject(xlRange2);
+                    Marshal.ReleaseComObject(xlRange3);
+
                 }
+
+
+                //TRANSPOSE
+
+                Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
+                xlRange2Used.Copy(Type.Missing);
+                int rowsXlRange2Used = xlRange2Used.Rows.Count;
+                int colsXlRange2Used = xlRange2Used.Columns.Count;
+
+                string newRangeStart = "A" + (rowsXlRange2Used + 2).ToString();
+                string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used + 1 ).ToString();
+
+                Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
+                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                xlRange2Used.EntireRow.Delete();
+
+
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
-                xlWorkbook2.SaveAs(directoryName + "/" + "output_" + fileName);
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ comboBox1.SelectedIndex + fileName);
+                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + comboBox1.SelectedIndex + fileName;
 
                 //Close documents without displaying any prompt boxes
                 xlApp2.DisplayAlerts = false;
@@ -201,24 +223,31 @@ namespace AutomationApp
                 //  ex: [somthing].[something].[something] is bad
 
                 //release com objects to fully kill excel process from running in the background
-                Marshal.ReleaseComObject(xlRange);
-                Marshal.ReleaseComObject(xlWorksheet);
                 //Marshal.ReleaseComObject(xlRange2);
-                Marshal.ReleaseComObject(xlWorksheet2);
                 //Marshal.ReleaseComObject(sourceRng);
                 //close and release
                 //xlWorkbook.Close(false, Type.Missing, Type.Missing);
                 //xlWorkbook2.Close();
                 //Marshal.ReleaseComObject(xlWorkbook);
                 //Marshal.ReleaseComObject(xlWorkbook2);
-
-               
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlRange2Replace);
+                Marshal.ReleaseComObject(xlRange2Used);
+                Marshal.ReleaseComObject(xlRangeCopy);
+                
+                Marshal.ReleaseComObject(xlWorksheet);
+                Marshal.ReleaseComObject(xlWorksheetCopy);
+                Marshal.ReleaseComObject(xlWorksheet2);
+                Marshal.ReleaseComObject(xlWorkbook);
+                Marshal.ReleaseComObject(xlWorkbook2);
+                Marshal.ReleaseComObject(xlWorkbookCopy);
                 //quit and release
                 //xlApp.Quit();
                //xlApp2.Quit();
 
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
+                Marshal.ReleaseComObject(xlAppCopy);
 
 
                 // TRANSPOSE RESULTS
@@ -415,5 +444,19 @@ namespace AutomationApp
             }
         }
 
+        private void label_1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
