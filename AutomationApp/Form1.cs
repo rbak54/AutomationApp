@@ -41,9 +41,14 @@ namespace AutomationApp
         }
         private void button_number_Click(object sender, EventArgs e)
         {
-            int s_number = comboBox1.SelectedIndex + 1;
-            //string ss_number = s_number;
+            int s_number = comboBox1.SelectedIndex + 1;            
             label12.Text = s_number.ToString();
+
+            for(int i = 1; i < s_number; i++)
+            {
+                TextBox box = box_0102;
+                box.Hide();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
