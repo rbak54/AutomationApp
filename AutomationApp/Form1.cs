@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace AutomationApp
 {
@@ -46,8 +47,17 @@ namespace AutomationApp
 
             for(int i = 1; i < s_number; i++)
             {
-                TextBox box = box_0102;
-                box.Hide();
+                TextBox tbx = this.Controls.Find("box_0102", true).FirstOrDefault() as TextBox;
+                tbx.Text = "found!";
+
+                //TextBox box;
+                //TextBox box.ID = "box_0102";
+
+                //string y = "box_0102";
+                //Control[] controls = Controls.Find("box_0102", true);
+                //TextBox box = controls as TextBox;
+                //box.Hide();
+                //TextBox box = Controls.FindControl("box_0102");
             }
         }
 
