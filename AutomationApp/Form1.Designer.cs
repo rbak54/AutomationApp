@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.Generic;
+using System.Windows.Forms;
+
 namespace AutomationApp
 {
     partial class Form1
@@ -41,14 +44,14 @@ namespace AutomationApp
             this.box_0101 = new System.Windows.Forms.TextBox();
             this.btn_2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label_8 = new System.Windows.Forms.Label();
+            this.label_7 = new System.Windows.Forms.Label();
+            this.label_6 = new System.Windows.Forms.Label();
+            this.label_5 = new System.Windows.Forms.Label();
+            this.label_4 = new System.Windows.Forms.Label();
+            this.label_3 = new System.Windows.Forms.Label();
+            this.label_2 = new System.Windows.Forms.Label();
+            this.label_1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
             this.textWarning1 = new System.Windows.Forms.Label();
@@ -59,15 +62,15 @@ namespace AutomationApp
             this.textWarning6 = new System.Windows.Forms.Label();
             this.textWarning7 = new System.Windows.Forms.Label();
             this.textWarning8 = new System.Windows.Forms.Label();
-            this.label_output = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
             // 
-            this.btn_1.Location = new System.Drawing.Point(93, 46);
-            this.btn_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_1.Location = new System.Drawing.Point(70, 37);
             this.btn_1.Name = "btn_1";
-            this.btn_1.Size = new System.Drawing.Size(169, 73);
+            this.btn_1.Size = new System.Drawing.Size(127, 59);
             this.btn_1.TabIndex = 0;
             this.btn_1.Text = "Select Files";
             this.btn_1.UseVisualStyleBackColor = true;
@@ -76,99 +79,90 @@ namespace AutomationApp
             // lbl_1
             // 
             this.lbl_1.AutoSize = true;
-            this.lbl_1.Location = new System.Drawing.Point(425, 74);
-            this.lbl_1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_1.Location = new System.Drawing.Point(319, 60);
             this.lbl_1.Name = "lbl_1";
-            this.lbl_1.Size = new System.Drawing.Size(132, 17);
+            this.lbl_1.Size = new System.Drawing.Size(100, 13);
             this.lbl_1.TabIndex = 1;
             this.lbl_1.Text = "Please Select a File";
             // 
             // box_0108
             // 
-            this.box_0108.Location = new System.Drawing.Point(429, 396);
-            this.box_0108.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0108.MaxLength = 5;
+            this.box_0108.Location = new System.Drawing.Point(322, 322);
+            this.box_0108.MaxLength = 15;
             this.box_0108.Name = "box_0108";
-            this.box_0108.Size = new System.Drawing.Size(132, 22);
+            this.box_0108.Size = new System.Drawing.Size(100, 20);
             this.box_0108.TabIndex = 3;
             this.box_0108.TextChanged += new System.EventHandler(this.box_0108_TextChanged);
             // 
             // box_0102
             // 
-            this.box_0102.Location = new System.Drawing.Point(429, 201);
-            this.box_0102.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0102.MaxLength = 5;
+            this.box_0102.Location = new System.Drawing.Point(322, 163);
+            this.box_0102.MaxLength = 15;
             this.box_0102.Name = "box_0102";
-            this.box_0102.Size = new System.Drawing.Size(132, 22);
+            this.box_0102.Size = new System.Drawing.Size(100, 20);
             this.box_0102.TabIndex = 4;
             this.box_0102.TextChanged += new System.EventHandler(this.box_0102_TextChanged);
             // 
             // box_0103
             // 
-            this.box_0103.Location = new System.Drawing.Point(429, 233);
-            this.box_0103.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0103.MaxLength = 5;
+            this.box_0103.Location = new System.Drawing.Point(322, 189);
+            this.box_0103.MaxLength = 15;
             this.box_0103.Name = "box_0103";
-            this.box_0103.Size = new System.Drawing.Size(132, 22);
+            this.box_0103.Size = new System.Drawing.Size(100, 20);
             this.box_0103.TabIndex = 5;
             this.box_0103.TextChanged += new System.EventHandler(this.box_0103_TextChanged);
             // 
             // box_0104
             // 
-            this.box_0104.Location = new System.Drawing.Point(429, 265);
-            this.box_0104.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0104.MaxLength = 5;
+            this.box_0104.Location = new System.Drawing.Point(322, 215);
+            this.box_0104.MaxLength = 15;
             this.box_0104.Name = "box_0104";
-            this.box_0104.Size = new System.Drawing.Size(132, 22);
+            this.box_0104.Size = new System.Drawing.Size(100, 20);
             this.box_0104.TabIndex = 6;
             this.box_0104.TextChanged += new System.EventHandler(this.box_0104_TextChanged);
             // 
             // box_0105
             // 
-            this.box_0105.Location = new System.Drawing.Point(429, 297);
-            this.box_0105.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0105.MaxLength = 5;
+            this.box_0105.Location = new System.Drawing.Point(322, 241);
+            this.box_0105.MaxLength = 15;
             this.box_0105.Name = "box_0105";
-            this.box_0105.Size = new System.Drawing.Size(132, 22);
+            this.box_0105.Size = new System.Drawing.Size(100, 20);
             this.box_0105.TabIndex = 7;
             this.box_0105.TextChanged += new System.EventHandler(this.box_0105_TextChanged);
             // 
             // box_0106
             // 
-            this.box_0106.Location = new System.Drawing.Point(429, 332);
-            this.box_0106.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0106.MaxLength = 5;
+            this.box_0106.Location = new System.Drawing.Point(322, 270);
+            this.box_0106.MaxLength = 15;
             this.box_0106.Name = "box_0106";
-            this.box_0106.Size = new System.Drawing.Size(132, 22);
+            this.box_0106.Size = new System.Drawing.Size(100, 20);
             this.box_0106.TabIndex = 8;
             this.box_0106.TextChanged += new System.EventHandler(this.box_0106_TextChanged);
             // 
             // box_0107
             // 
-            this.box_0107.Location = new System.Drawing.Point(429, 364);
-            this.box_0107.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0107.MaxLength = 5;
+            this.box_0107.Location = new System.Drawing.Point(322, 296);
+            this.box_0107.MaxLength = 15;
             this.box_0107.Name = "box_0107";
-            this.box_0107.Size = new System.Drawing.Size(132, 22);
+            this.box_0107.Size = new System.Drawing.Size(100, 20);
             this.box_0107.TabIndex = 9;
             this.box_0107.TextChanged += new System.EventHandler(this.box_0107_TextChanged);
             // 
             // box_0101
             // 
-            this.box_0101.Location = new System.Drawing.Point(429, 169);
-            this.box_0101.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.box_0101.MaxLength = 5;
+            this.box_0101.Location = new System.Drawing.Point(322, 137);
+            this.box_0101.MaxLength = 15;
             this.box_0101.Name = "box_0101";
-            this.box_0101.Size = new System.Drawing.Size(132, 22);
+            this.box_0101.Size = new System.Drawing.Size(100, 20);
             this.box_0101.TabIndex = 10;
+            this.box_0101.Visible = false;
             this.box_0101.TextChanged += new System.EventHandler(this.box_0101_TextChanged);
             // 
             // btn_2
             // 
-            this.btn_2.Location = new System.Drawing.Point(411, 449);
-            this.btn_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_2.Location = new System.Drawing.Point(308, 365);
             this.btn_2.Name = "btn_2";
-            this.btn_2.Size = new System.Drawing.Size(169, 73);
+            this.btn_2.Size = new System.Drawing.Size(127, 59);
             this.btn_2.TabIndex = 11;
             this.btn_2.Text = "Submit";
             this.btn_2.UseVisualStyleBackColor = true;
@@ -177,102 +171,92 @@ namespace AutomationApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(447, 148);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(335, 120);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 17);
+            this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "HODS Codes";
             // 
-            // label3
+            // label_8
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(324, 400);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "IonCode_0108";
+            this.label_8.AutoSize = true;
+            this.label_8.Location = new System.Drawing.Point(243, 325);
+            this.label_8.Name = "label_8";
+            this.label_8.Size = new System.Drawing.Size(77, 13);
+            this.label_8.TabIndex = 14;
+            this.label_8.Text = "IonCode_0108";
             // 
-            // label4
+            // label_7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(324, 369);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "IonCode_0107";
+            this.label_7.AutoSize = true;
+            this.label_7.Location = new System.Drawing.Point(243, 300);
+            this.label_7.Name = "label_7";
+            this.label_7.Size = new System.Drawing.Size(77, 13);
+            this.label_7.TabIndex = 15;
+            this.label_7.Text = "IonCode_0107";
             // 
-            // label5
+            // label_6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(324, 336);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 17);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "IonCode_0106";
+            this.label_6.AutoSize = true;
+            this.label_6.Location = new System.Drawing.Point(243, 273);
+            this.label_6.Name = "label_6";
+            this.label_6.Size = new System.Drawing.Size(77, 13);
+            this.label_6.TabIndex = 16;
+            this.label_6.Text = "IonCode_0106";
             // 
-            // label6
+            // label_5
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(324, 300);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 17);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "IonCode_0105";
+            this.label_5.AutoSize = true;
+            this.label_5.Location = new System.Drawing.Point(243, 244);
+            this.label_5.Name = "label_5";
+            this.label_5.Size = new System.Drawing.Size(77, 13);
+            this.label_5.TabIndex = 17;
+            this.label_5.Text = "IonCode_0105";
             // 
-            // label7
+            // label_4
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(324, 270);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 17);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "IonCode_0104";
+            this.label_4.AutoSize = true;
+            this.label_4.Location = new System.Drawing.Point(243, 219);
+            this.label_4.Name = "label_4";
+            this.label_4.Size = new System.Drawing.Size(77, 13);
+            this.label_4.TabIndex = 18;
+            this.label_4.Text = "IonCode_0104";
             // 
-            // label8
+            // label_3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(324, 236);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 17);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "IonCode_0103";
+            this.label_3.AutoSize = true;
+            this.label_3.Location = new System.Drawing.Point(243, 192);
+            this.label_3.Name = "label_3";
+            this.label_3.Size = new System.Drawing.Size(77, 13);
+            this.label_3.TabIndex = 19;
+            this.label_3.Text = "IonCode_0103";
             // 
-            // label9
+            // label_2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(324, 204);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 17);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "IonCode_0102";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.label_2.AutoSize = true;
+            this.label_2.Location = new System.Drawing.Point(243, 166);
+            this.label_2.Name = "label_2";
+            this.label_2.Size = new System.Drawing.Size(77, 13);
+            this.label_2.TabIndex = 20;
+            this.label_2.Text = "IonCode_0102";
+            this.label_2.Click += new System.EventHandler(this.label9_Click);
             // 
-            // label10
+            // label_1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(324, 172);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(100, 17);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "IonCode_0101";
+            this.label_1.AutoSize = true;
+            this.label_1.Location = new System.Drawing.Point(243, 140);
+            this.label_1.Name = "label_1";
+            this.label_1.Size = new System.Drawing.Size(77, 13);
+            this.label_1.TabIndex = 21;
+            this.label_1.Text = "IonCode_0101";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(153, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(115, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(667, 20);
+            this.label2.Size = new System.Drawing.Size(535, 16);
             this.label2.TabIndex = 22;
             this.label2.Text = "Select a file first, enter HODS codes in the relevant boxes, then click \'Submit\'";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -280,102 +264,111 @@ namespace AutomationApp
             // warningLabel
             // 
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(641, 478);
-            this.warningLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.warningLabel.Location = new System.Drawing.Point(481, 388);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(0, 17);
+            this.warningLabel.Size = new System.Drawing.Size(0, 13);
             this.warningLabel.TabIndex = 23;
             // 
             // textWarning1
             // 
             this.textWarning1.AutoSize = true;
-            this.textWarning1.Location = new System.Drawing.Point(641, 169);
-            this.textWarning1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning1.Location = new System.Drawing.Point(481, 137);
             this.textWarning1.Name = "textWarning1";
-            this.textWarning1.Size = new System.Drawing.Size(0, 17);
+            this.textWarning1.Size = new System.Drawing.Size(0, 13);
             this.textWarning1.TabIndex = 24;
             // 
             // textWarning2
             // 
             this.textWarning2.AutoSize = true;
-            this.textWarning2.Location = new System.Drawing.Point(641, 201);
-            this.textWarning2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning2.Location = new System.Drawing.Point(481, 163);
             this.textWarning2.Name = "textWarning2";
-            this.textWarning2.Size = new System.Drawing.Size(0, 17);
+            this.textWarning2.Size = new System.Drawing.Size(0, 13);
             this.textWarning2.TabIndex = 25;
             // 
             // textWarning3
             // 
             this.textWarning3.AutoSize = true;
-            this.textWarning3.Location = new System.Drawing.Point(641, 233);
-            this.textWarning3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning3.Location = new System.Drawing.Point(481, 189);
             this.textWarning3.Name = "textWarning3";
-            this.textWarning3.Size = new System.Drawing.Size(0, 17);
+            this.textWarning3.Size = new System.Drawing.Size(0, 13);
             this.textWarning3.TabIndex = 26;
             // 
             // textWarning4
             // 
             this.textWarning4.AutoSize = true;
-            this.textWarning4.Location = new System.Drawing.Point(641, 265);
-            this.textWarning4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning4.Location = new System.Drawing.Point(481, 215);
             this.textWarning4.Name = "textWarning4";
-            this.textWarning4.Size = new System.Drawing.Size(0, 17);
+            this.textWarning4.Size = new System.Drawing.Size(0, 13);
             this.textWarning4.TabIndex = 27;
             // 
             // textWarning5
             // 
             this.textWarning5.AutoSize = true;
-            this.textWarning5.Location = new System.Drawing.Point(641, 297);
-            this.textWarning5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning5.Location = new System.Drawing.Point(481, 241);
             this.textWarning5.Name = "textWarning5";
-            this.textWarning5.Size = new System.Drawing.Size(0, 17);
+            this.textWarning5.Size = new System.Drawing.Size(0, 13);
             this.textWarning5.TabIndex = 28;
             // 
             // textWarning6
             // 
             this.textWarning6.AutoSize = true;
-            this.textWarning6.Location = new System.Drawing.Point(641, 332);
-            this.textWarning6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning6.Location = new System.Drawing.Point(481, 270);
             this.textWarning6.Name = "textWarning6";
-            this.textWarning6.Size = new System.Drawing.Size(0, 17);
+            this.textWarning6.Size = new System.Drawing.Size(0, 13);
             this.textWarning6.TabIndex = 29;
             // 
             // textWarning7
             // 
             this.textWarning7.AutoSize = true;
-            this.textWarning7.Location = new System.Drawing.Point(641, 364);
-            this.textWarning7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning7.Location = new System.Drawing.Point(481, 296);
             this.textWarning7.Name = "textWarning7";
-            this.textWarning7.Size = new System.Drawing.Size(0, 17);
+            this.textWarning7.Size = new System.Drawing.Size(0, 13);
             this.textWarning7.TabIndex = 30;
             // 
             // textWarning8
             // 
             this.textWarning8.AutoSize = true;
-            this.textWarning8.Location = new System.Drawing.Point(641, 396);
-            this.textWarning8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textWarning8.Location = new System.Drawing.Point(481, 322);
             this.textWarning8.Name = "textWarning8";
-            this.textWarning8.Size = new System.Drawing.Size(0, 17);
+            this.textWarning8.Size = new System.Drawing.Size(0, 13);
             this.textWarning8.TabIndex = 31;
             // 
-            // label_output
+            // comboBox1
             // 
-            this.label_output.AutoSize = true;
-            this.label_output.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_output.Location = new System.Drawing.Point(153, 561);
-            this.label_output.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_output.Name = "label_output";
-            this.label_output.Size = new System.Drawing.Size(0, 25);
-            this.label_output.TabIndex = 32;
-            this.label_output.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label_output.Click += new System.EventHandler(this.label11_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox1.Location = new System.Drawing.Point(559, 75);
+            this.comboBox1.MaxDropDownItems = 12;
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(175, 21);
+            this.comboBox1.TabIndex = 32;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(556, 49);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 13);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "Number of samples";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 620);
-            this.Controls.Add(this.label_output);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textWarning8);
             this.Controls.Add(this.textWarning7);
             this.Controls.Add(this.textWarning6);
@@ -386,14 +379,14 @@ namespace AutomationApp
             this.Controls.Add(this.textWarning1);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_1);
+            this.Controls.Add(this.label_2);
+            this.Controls.Add(this.label_3);
+            this.Controls.Add(this.label_4);
+            this.Controls.Add(this.label_5);
+            this.Controls.Add(this.label_6);
+            this.Controls.Add(this.label_7);
+            this.Controls.Add(this.label_8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.box_0101);
@@ -406,7 +399,6 @@ namespace AutomationApp
             this.Controls.Add(this.box_0108);
             this.Controls.Add(this.lbl_1);
             this.Controls.Add(this.btn_1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -419,25 +411,29 @@ namespace AutomationApp
 
         private System.Windows.Forms.Button btn_1;
         private System.Windows.Forms.Label lbl_1;
-        private System.Windows.Forms.TextBox box_0108;
+
+        private System.Windows.Forms.TextBox box_0101;
         private System.Windows.Forms.TextBox box_0102;
         private System.Windows.Forms.TextBox box_0103;
         private System.Windows.Forms.TextBox box_0104;
         private System.Windows.Forms.TextBox box_0105;
         private System.Windows.Forms.TextBox box_0106;
         private System.Windows.Forms.TextBox box_0107;
-        private System.Windows.Forms.TextBox box_0101;
+        private System.Windows.Forms.TextBox box_0108;
+
         private System.Windows.Forms.Button btn_2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_8;
+        private System.Windows.Forms.Label label_7;
+        private System.Windows.Forms.Label label_6;
+        private System.Windows.Forms.Label label_5;
+        private System.Windows.Forms.Label label_4;
+        private System.Windows.Forms.Label label_3;
+        private System.Windows.Forms.Label label_2;
+        private System.Windows.Forms.Label label_1;
+
         private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label textWarning1;
         private System.Windows.Forms.Label textWarning2;
@@ -447,7 +443,9 @@ namespace AutomationApp
         private System.Windows.Forms.Label textWarning6;
         private System.Windows.Forms.Label textWarning7;
         private System.Windows.Forms.Label textWarning8;
-        private System.Windows.Forms.Label label_output;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label11;
+
     }
 }
 

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
 using System.IO;
+using System.Collections.Generic;
 
 namespace AutomationApp
 {
@@ -12,6 +13,23 @@ namespace AutomationApp
         public Form1()
         {
             InitializeComponent();
+
+            /// Initialise lists of all text boxes and respective labels
+            List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
+            {
+                box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
+            };
+            List<System.Windows.Forms.Label> labels = new List<System.Windows.Forms.Label>
+            {
+                label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8
+            };
+
+            /// hide the boxes and labels before the user selected number of samples
+            for (int i = 0; i < 8; i++)
+            {
+                textBoxes[i].Hide();
+                labels[i].Hide();
+            }
         }
 
         private void btn_1_Click(object sender, EventArgs e)
@@ -63,6 +81,18 @@ namespace AutomationApp
 
             warningLabel.Text = "";
 
+            /// check if user has selected a number of files
+            if (comboBox1.SelectedIndex == -1)
+            {
+                warningLabel.ForeColor = Color.Red;
+                warningLabel.Text = "Please select the number of samples in the file";
+                return;
+            }
+
+            warningLabel.Text = "";
+
+
+
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -108,7 +138,7 @@ namespace AutomationApp
 
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
-                for (int sample=1; sample<9; sample++) 
+                for (int sample=1; sample<comboBox1.SelectedIndex +2; sample++) 
                 {
                     //i is the row we're interested in
                     int i = sample + 2;
@@ -150,22 +180,6 @@ namespace AutomationApp
                     xlRangeCopy.AutoFilter(i);
 
                 }
-
-                //TRANSPOSE FILE
-                Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
-                xlRange2Used.Copy(Type.Missing);
-                int rowsXlRange2Used = xlRange2Used.Rows.Count;
-                int colsXlRange2Used = xlRange2Used.Columns.Count;
-
-                string newRangeStart = "A" + (rowsXlRange2Used + 1).ToString();
-                string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used).ToString();
-
-                Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
-                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
-                xlRange2Used.Delete();
-
-
-
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
@@ -206,7 +220,7 @@ namespace AutomationApp
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
 
-                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
+
                 // TRANSPOSE RESULTS
                 // MAKE WORD FILE?
             }
@@ -371,5 +385,35 @@ namespace AutomationApp
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+      
+            List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
+            {
+                box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
+            };
+
+            List<System.Windows.Forms.Label> labels = new List<System.Windows.Forms.Label>
+            {
+                label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8
+            };
+
+            /// hide the boxes and labels before the user selected number of samples
+            for (int i = 0; i < 8; i++)
+            {
+                textBoxes[i].Hide();
+                labels[i].Hide();
+            }
+
+            for (int i = 0; i < comboBox1.SelectedIndex +1; i++ )
+            {
+                textBoxes[i].Show();
+                labels[i].Show();
+
+            }
+        }
+
     }
 }
