@@ -206,7 +206,7 @@ namespace AutomationApp
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
 
-
+                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
                 // TRANSPOSE RESULTS
                 // MAKE WORD FILE?
             }
@@ -365,6 +365,11 @@ namespace AutomationApp
                 textWarning8.ForeColor = Color.Red;
                 textWarning8.Text = "Invalid Input";
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
