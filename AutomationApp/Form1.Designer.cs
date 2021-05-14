@@ -59,6 +59,8 @@ namespace AutomationApp
             this.textWarning6 = new System.Windows.Forms.Label();
             this.textWarning7 = new System.Windows.Forms.Label();
             this.textWarning8 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_1
@@ -327,11 +329,46 @@ namespace AutomationApp
             this.textWarning8.Size = new System.Drawing.Size(0, 13);
             this.textWarning8.TabIndex = 31;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBox1.Location = new System.Drawing.Point(559, 75);
+            this.comboBox1.MaxDropDownItems = 12;
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(175, 21);
+            this.comboBox1.TabIndex = 32;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(556, 49);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 13);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "Number of samples";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textWarning8);
             this.Controls.Add(this.textWarning7);
             this.Controls.Add(this.textWarning6);
@@ -402,6 +439,8 @@ namespace AutomationApp
         private System.Windows.Forms.Label textWarning6;
         private System.Windows.Forms.Label textWarning7;
         private System.Windows.Forms.Label textWarning8;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label11;
     }
 }
 
