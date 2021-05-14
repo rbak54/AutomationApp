@@ -97,7 +97,7 @@ namespace AutomationApp
                 Excel._Worksheet xlWorksheet2 = xlWorkbook2.Sheets[1];
 
                 //insert HODS codes
-                xlWorksheet2.Cells[1, 1] = box_0101.Text;
+                //xlWorksheet2.Cells[1, 1] = box_0101.Text;
                 xlWorksheet2.Cells[1, 2] = box_0102.Text;
                 xlWorksheet2.Cells[1, 3] = box_0103.Text;
                 xlWorksheet2.Cells[1, 4] = box_0104.Text;
@@ -106,6 +106,7 @@ namespace AutomationApp
                 xlWorksheet2.Cells[1, 7] = box_0107.Text;
                 xlWorksheet2.Cells[1, 8] = box_0108.Text;
 
+                box_0101.Hide();
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
                 for (int sample=1; sample<9; sample++) 
