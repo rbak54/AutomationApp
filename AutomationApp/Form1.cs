@@ -389,7 +389,6 @@ namespace AutomationApp
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
       
             List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
             {
