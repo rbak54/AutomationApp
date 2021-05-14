@@ -2,6 +2,8 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Drawing;
+using System.IO;
 
 namespace AutomationApp
 {
@@ -50,6 +52,17 @@ namespace AutomationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /// check if user has selected a file - if not then warn the user and return 
+            /// verify a file has been selected by observing the label lbl_1.
+            if (lbl_1.Text == "Please Select a File")
+            {
+                warningLabel.ForeColor = Color.Red;
+                warningLabel.Text = "Please select a file before continuing";
+                return;
+            }
+
+            warningLabel.Text = "";
+
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -63,7 +76,21 @@ namespace AutomationApp
                 //int rowCount = xlRange.Rows.Count;
                 //int colCount = xlRange.Columns.Count;
 
-                //create COM objects for intermediate app
+                //create COM objects for copy of original document
+                Excel.Application xlAppCopy = new Excel.Application();
+                xlAppCopy.Visible = true;
+                Excel.Workbook xlWorkbookCopy = xlAppCopy.Workbooks.Add();
+                Excel._Worksheet xlWorksheetCopy = xlWorkbookCopy.Sheets[1];
+
+                //Copy all contents from selected file to the new excel doc
+                int nRows = xlRange.Rows.Count;
+                int nEndDestinationCopy = nRows;
+                string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
+                Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
+                xlRange.Copy(Type.Missing);
+                xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+
+                //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = true;
                 Excel.Workbook xlWorkbook2 = xlApp2.Workbooks.Add();
@@ -81,53 +108,76 @@ namespace AutomationApp
 
                 //LOOP THROUGH SAMPLES 
                 //for loop to repeat for each sample. Can reinstate this later.
-                //for (int i=3; i<11; i++) 
-                //{
-                int i = 3;
-                //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
+                for (int sample=1; sample<9; sample++) 
+                {
+                    //i is the row we're interested in
+                    int i = sample + 2;
+                    //https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel.range.autofilter?view=excel-pia
 
-                //PUT SAMPLE NAME IN EXCEL
-
-
+                    //PUT SAMPLE NAME IN EXCEL
                 
-                ///SORT AND FILTER- i is column number 
-                xlRange.Sort(xlRange.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
-                xlRange.AutoFilter(i, "<100");
-
-            //COUNT FILTERED ROWS
-            //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
-            //NOTE, this includes the first row in the count, so -1
-            //this counts visible cells
-                Excel.Range xlRange3 = xlRange.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
-             // -1 because of headers  
-                int nFilteredRows = xlRange3.Rows.Count - 1;
-                lbl_1.Text = nFilteredRows.ToString();
-                //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
-                //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
                 
-                int nStartSource = 2;
-                int nEndSource = nStartSource + nFilteredRows - 1;
-                int nStartDestination = 2;
-                int nEndDestination = nStartDestination + nFilteredRows - 1;
-                string startSource = "A" + nStartSource.ToString();
-                string startDestination = "A" + nStartDestination.ToString();
-                string endSource = "A" + nEndSource.ToString();
-                string endDestination = "A" + nEndDestination.ToString();
-                Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
-                Excel.Range sourceRng = xlWorksheet.get_Range(startSource,endDestination);
-                sourceRng.Copy(Type.Missing);
-                xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    ///SORT AND FILTER- i is column number 
+                    xlRangeCopy.Sort(xlRangeCopy.Columns[i], Excel.XlSortOrder.xlAscending, Type.Missing, Type.Missing, Excel.XlSortOrder.xlAscending, Type.Missing, Excel.XlSortOrder.xlAscending, Excel.XlYesNoGuess.xlYes);
+                    xlRangeCopy.AutoFilter(i, "<100");
+                                        
+                    //COUNT FILTERED ROWS
+                    //https://stackoverflow.com/questions/41731714/counting-rows-of-filtered-excel-range-in-c-sharp
+                    //NOTE, this includes the first row in the count, so -1
+                    //this counts visible cells
+                    Excel.Range xlRange3 = xlRangeCopy.SpecialCells(Excel.XlCellType.xlCellTypeVisible);
+                    // -1 because of headers  
+                    int nFilteredRows = xlRange3.Rows.Count - 1;
+                    string sampleLetter = ((char)(sample + 64)).ToString();
+                    //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
+                    //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
+
+                    int nStartSource = 2;
+                    int nEndSource = nStartSource + nFilteredRows - 1;
+                    int nStartDestination = 2;
+                    int nEndDestination = nStartDestination + nFilteredRows - 1;
+                    string startSource = "A" + nStartSource.ToString();
+                    string startDestination = sampleLetter + nStartDestination.ToString();
+                    string endSource = "A" + nEndSource.ToString();
+                    string endDestination = sampleLetter + nEndDestination.ToString();
+                    Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
+                    Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
+                    sourceRng.Copy(Type.Missing);
+                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
+
+                    //REMOVE FILTER
+                    xlRangeCopy.AutoFilter(i);
+
+                }
+
+                //TRANSPOSE FILE
+                Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
+                xlRange2Used.Copy(Type.Missing);
+                int rowsXlRange2Used = xlRange2Used.Rows.Count;
+                int colsXlRange2Used = xlRange2Used.Columns.Count;
+
+                string newRangeStart = "A" + (rowsXlRange2Used + 1).ToString();
+                string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used).ToString();
+
+                Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
+                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                xlRange2Used.Delete();
 
 
-                //REMOVE FILTER
-                xlRange.AutoFilter(i);
 
-                //SAVE INTERMEDIATE DOCUMENT
-                //xlWorkbook2.SaveAs(@"test.xls");
-                
+                //SAVE OUTPUT DOCUMENT
+                string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
+                string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_" + fileName);
 
-                //}
-
+                //Close documents without displaying any prompt boxes
+                xlApp2.DisplayAlerts = false;
+                xlApp2.Quit();
+                xlAppCopy.DisplayAlerts = false;
+                xlAppCopy.Quit();
+                xlApp.DisplayAlerts = false;
+                xlApp.Quit();
 
                 //cleanup
                 GC.Collect();
@@ -139,9 +189,9 @@ namespace AutomationApp
                 //release com objects to fully kill excel process from running in the background
                 Marshal.ReleaseComObject(xlRange);
                 Marshal.ReleaseComObject(xlWorksheet);
-                Marshal.ReleaseComObject(xlRange2);
+                //Marshal.ReleaseComObject(xlRange2);
                 Marshal.ReleaseComObject(xlWorksheet2);
-                Marshal.ReleaseComObject(sourceRng);
+                //Marshal.ReleaseComObject(sourceRng);
                 //close and release
                 //xlWorkbook.Close(false, Type.Missing, Type.Missing);
                 //xlWorkbook2.Close();
@@ -156,7 +206,7 @@ namespace AutomationApp
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
 
-
+                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
                 // TRANSPOSE RESULTS
                 // MAKE WORD FILE?
             }
@@ -167,7 +217,157 @@ namespace AutomationApp
 
         }
 
-        private void lbl_1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Validating the input for box_0101 - notifying the user if their input is valid
+        ///
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void box_0101_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0101.Text == "")
+            {
+                return;
+            }
+            /// if text is numerical and length = 5 then the input is valid
+            if (int.TryParse(box_0101.Text, out _) && box_0101.Text.Length == 5){
+                textWarning1.ForeColor = Color.Green;
+                textWarning1.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning1.ForeColor = Color.Red;
+                textWarning1.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0102_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0102.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0102.Text, out _) && box_0102.Text.Length == 5)
+            {
+                textWarning2.ForeColor = Color.Green;
+                textWarning2.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning2.ForeColor = Color.Red;
+                textWarning2.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0103_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0103.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0103.Text, out _) && box_0103.Text.Length == 5)
+            {
+                textWarning3.ForeColor = Color.Green;
+                textWarning3.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning3.ForeColor = Color.Red;
+                textWarning3.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0104_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0104.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0104.Text, out _) && box_0104.Text.Length == 5)
+            {
+                textWarning4.ForeColor = Color.Green;
+                textWarning4.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning4.ForeColor = Color.Red;
+                textWarning4.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0105_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0105.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0105.Text, out _) && box_0105.Text.Length == 5)
+            {
+                textWarning5.ForeColor = Color.Green;
+                textWarning5.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning5.ForeColor = Color.Red;
+                textWarning5.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0106_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0106.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0106.Text, out _) && box_0106.Text.Length == 5)
+            {
+                textWarning6.ForeColor = Color.Green;
+                textWarning6.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning6.ForeColor = Color.Red;
+                textWarning6.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0107_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0107.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0107.Text, out _) && box_0107.Text.Length == 5)
+            {
+                textWarning7.ForeColor = Color.Green;
+                textWarning7.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning7.ForeColor = Color.Red;
+                textWarning7.Text = "Invalid Input";
+            }
+        }
+
+        private void box_0108_TextChanged(object sender, EventArgs e)
+        {
+            if (box_0108.Text == "")
+            {
+                return;
+            }
+            if (int.TryParse(box_0108.Text, out _) && box_0108.Text.Length == 5)
+            {
+                textWarning8.ForeColor = Color.Green;
+                textWarning8.Text = "Valid Input";
+            }
+            else
+            {
+                textWarning8.ForeColor = Color.Red;
+                textWarning8.Text = "Invalid Input";
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }
