@@ -173,7 +173,7 @@ namespace AutomationApp
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                     Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
                     sourceRng.Copy(Type.Missing) ;
-                    //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
@@ -204,8 +204,8 @@ namespace AutomationApp
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
-                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ comboBox1.SelectedIndex + fileName);
-                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + comboBox1.SelectedIndex + fileName;
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ fileName);
+                label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
 
                 //Close documents without displaying any prompt boxes
                 xlApp2.DisplayAlerts = false;
