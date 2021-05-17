@@ -10,11 +10,17 @@ namespace AutomationApp
 {
     public partial class Form1 : Form
     {
+
+        List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>();
+        List<System.Windows.Forms.Label> labels = new List<System.Windows.Forms.Label>();
+
+
         public Form1()
         {
             InitializeComponent();
 
             /// Initialise lists of all text boxes and respective labels
+
             List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
             {
                 box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
@@ -91,8 +97,6 @@ namespace AutomationApp
 
             warningLabel.Text = "";
 
-
-
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
             {
@@ -103,8 +107,6 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
-                //int rowCount = xlRange.Rows.Count;
-                //int colCount = xlRange.Columns.Count;
 
                 //create COM objects for copy of original document
                 Excel.Application xlAppCopy = new Excel.Application();
@@ -117,9 +119,7 @@ namespace AutomationApp
                 int nEndDestinationCopy = nRows;
                 string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
                 Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
-                xlRange.Copy(Type.Missing);
-                xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
-
+                xlRangeCopy.Value2 = xlRange.Value2;
                 //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = false;
@@ -159,9 +159,8 @@ namespace AutomationApp
                     // -1 because of headers  
                     int nFilteredRows = xlRange3.Rows.Count - 1;
                     string sampleLetter = ((char)(sample + 64)).ToString();
-                    //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
+                    //MOVE FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
                     //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
-
                     int nStartSource = 2;
                     int nEndSource = nStartSource + nFilteredRows - 1;
                     int nStartDestination = 2;
@@ -172,8 +171,7 @@ namespace AutomationApp
                     string endDestination = sampleLetter + nEndDestination.ToString();
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                     Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
-                    sourceRng.Copy(Type.Missing) ;
-                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    xlRange2.Value2 = sourceRng.Value2;
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
@@ -188,16 +186,20 @@ namespace AutomationApp
 
                 //TRANSPOSE
 
+                //Access range of data in worksheet, and dimensions
                 Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
-                xlRange2Used.Copy(Type.Missing);
                 int rowsXlRange2Used = xlRange2Used.Rows.Count;
                 int colsXlRange2Used = xlRange2Used.Columns.Count;
 
+                //formulate location for transposed range
                 string newRangeStart = "A" + (rowsXlRange2Used + 2).ToString();
                 string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used + 1 ).ToString();
-
                 Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
-                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+
+                //transpose into new location
+                xlWorksheet2.Range[newRangeStart + ":" +newRangeEnd].Value = xlApp2.WorksheetFunction.Transpose(xlRange2Used);
+                
+                //delete columns with untransposed information
                 xlRange2Used.EntireRow.Delete();
 
 
@@ -223,35 +225,22 @@ namespace AutomationApp
                 //  ex: [somthing].[something].[something] is bad
 
                 //release com objects to fully kill excel process from running in the background
-                //Marshal.ReleaseComObject(xlRange2);
-                //Marshal.ReleaseComObject(sourceRng);
-                //close and release
-                //xlWorkbook.Close(false, Type.Missing, Type.Missing);
-                //xlWorkbook2.Close();
-                //Marshal.ReleaseComObject(xlWorkbook);
-                //Marshal.ReleaseComObject(xlWorkbook2);
+     
                 Marshal.ReleaseComObject(xlRange);
                 Marshal.ReleaseComObject(xlRange2Replace);
                 Marshal.ReleaseComObject(xlRange2Used);
                 Marshal.ReleaseComObject(xlRangeCopy);
-                
                 Marshal.ReleaseComObject(xlWorksheet);
                 Marshal.ReleaseComObject(xlWorksheetCopy);
                 Marshal.ReleaseComObject(xlWorksheet2);
                 Marshal.ReleaseComObject(xlWorkbook);
                 Marshal.ReleaseComObject(xlWorkbook2);
                 Marshal.ReleaseComObject(xlWorkbookCopy);
-                //quit and release
-                //xlApp.Quit();
-               //xlApp2.Quit();
-
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
                 Marshal.ReleaseComObject(xlAppCopy);
 
 
-                // TRANSPOSE RESULTS
-                // MAKE WORD FILE?
             }
         }
 
@@ -429,11 +418,22 @@ namespace AutomationApp
                 label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8
             };
 
+            List<System.Windows.Forms.Label> warnings = new List<System.Windows.Forms.Label>
+            {
+                textWarning1, textWarning2, textWarning3, textWarning4, textWarning5, textWarning6, textWarning7, textWarning8
+            };
+
             /// hide the boxes and labels before the user selected number of samples
             for (int i = 0; i < 8; i++)
             {
                 textBoxes[i].Hide();
                 labels[i].Hide();
+            }
+
+            for (int i = 7; i > comboBox1.SelectedIndex; i--)
+            {
+                textBoxes[i].Text = "";
+                warnings[i].Text = ""; 
             }
 
             for (int i = 0; i < comboBox1.SelectedIndex +1; i++ )
@@ -442,6 +442,7 @@ namespace AutomationApp
                 labels[i].Show();
 
             }
+
         }
 
         private void label_1_Click(object sender, EventArgs e)
