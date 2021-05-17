@@ -10,11 +10,17 @@ namespace AutomationApp
 {
     public partial class Form1 : Form
     {
+
+        List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>();
+        List<System.Windows.Forms.Label> labels = new List<System.Windows.Forms.Label>();
+
+
         public Form1()
         {
             InitializeComponent();
 
             /// Initialise lists of all text boxes and respective labels
+
             List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>
             {
                 box_0101, box_0102, box_0103, box_0104, box_0105, box_0106, box_0107, box_0108
@@ -90,8 +96,6 @@ namespace AutomationApp
             }
 
             warningLabel.Text = "";
-
-
 
             string[] filePath = lbl_1.Text.Split('\n');
             foreach (string sFileName in filePath)
@@ -440,11 +444,22 @@ namespace AutomationApp
                 label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8
             };
 
+            List<System.Windows.Forms.Label> warnings = new List<System.Windows.Forms.Label>
+            {
+                textWarning1, textWarning2, textWarning3, textWarning4, textWarning5, textWarning6, textWarning7, textWarning8
+            };
+
             /// hide the boxes and labels before the user selected number of samples
             for (int i = 0; i < 8; i++)
             {
                 textBoxes[i].Hide();
                 labels[i].Hide();
+            }
+
+            for (int i = 7; i > comboBox1.SelectedIndex; i--)
+            {
+                textBoxes[i].Text = "";
+                warnings[i].Text = ""; 
             }
 
             for (int i = 0; i < comboBox1.SelectedIndex +1; i++ )
@@ -453,6 +468,7 @@ namespace AutomationApp
                 labels[i].Show();
 
             }
+
         }
 
         private void label_1_Click(object sender, EventArgs e)
