@@ -107,9 +107,6 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
-                //Clipboard.Clear();
-                //int rowCount = xlRange.Rows.Count;
-                //int colCount = xlRange.Columns.Count;
 
                 //create COM objects for copy of original document
                 Excel.Application xlAppCopy = new Excel.Application();
@@ -122,9 +119,6 @@ namespace AutomationApp
                 int nEndDestinationCopy = nRows;
                 string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
                 Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
-                //xlRange.Copy(Type.Missing);
-                //xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
-                //Clipboard.Clear();
                 xlRangeCopy.Value2 = xlRange.Value2;
                 //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
@@ -165,9 +159,8 @@ namespace AutomationApp
                     // -1 because of headers  
                     int nFilteredRows = xlRange3.Rows.Count - 1;
                     string sampleLetter = ((char)(sample + 64)).ToString();
-                    //COPY FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
+                    //MOVE FILTERED ROWS- will need to change the values in get range to fit the sample and number of filtered genes
                     //-1 becaause to get 4 rows we need A2:A5 and  5-2 is 4-1
-
                     int nStartSource = 2;
                     int nEndSource = nStartSource + nFilteredRows - 1;
                     int nStartDestination = 2;
@@ -178,10 +171,7 @@ namespace AutomationApp
                     string endDestination = sampleLetter + nEndDestination.ToString();
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                     Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
-                    //sourceRng.Copy(Type.Missing) ;
                     xlRange2.Value2 = sourceRng.Value2;
-                    //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
-                    //Clipboard.Clear();
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
@@ -196,30 +186,27 @@ namespace AutomationApp
 
                 //TRANSPOSE
 
+                //Access range of data in worksheet, and dimensions
                 Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
-                //xlRange2Used.Copy(Type.Missing);
                 int rowsXlRange2Used = xlRange2Used.Rows.Count;
                 int colsXlRange2Used = xlRange2Used.Columns.Count;
 
+                //formulate location for transposed range
                 string newRangeStart = "A" + (rowsXlRange2Used + 2).ToString();
                 string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used + 1 ).ToString();
-
                 Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
-                // xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
-                // Clipboard.Clear();
 
-                // Object[,] transposedRange = (Object[,])xlApp.WorksheetFunction.Transpose(xlRange2Used.Value2);
-                //xlWorksheet2.xlRange2Replace.Resize(transposedRange.GetUpperBound(0), transposedRange.GetUpperBound(1)) = transposedRange;
-
-                //Object[,] transposedRange = xlApp.WorksheetFunction.Transpose(xlRange2Used.Value2);
+                //transpose into new location
                 xlWorksheet2.Range[newRangeStart + ":" +newRangeEnd].Value = xlApp2.WorksheetFunction.Transpose(xlRange2Used);
+                
+                //delete columns with untransposed information
                 xlRange2Used.EntireRow.Delete();
 
 
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
-                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ (comboBox1.SelectedIndex + 1)+ fileName);
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ fileName);
                 label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
 
                 //Close documents without displaying any prompt boxes
@@ -238,35 +225,22 @@ namespace AutomationApp
                 //  ex: [somthing].[something].[something] is bad
 
                 //release com objects to fully kill excel process from running in the background
-                //Marshal.ReleaseComObject(xlRange2);
-                //Marshal.ReleaseComObject(sourceRng);
-                //close and release
-                //xlWorkbook.Close(false, Type.Missing, Type.Missing);
-                //xlWorkbook2.Close();
-                //Marshal.ReleaseComObject(xlWorkbook);
-                //Marshal.ReleaseComObject(xlWorkbook2);
+     
                 Marshal.ReleaseComObject(xlRange);
                 Marshal.ReleaseComObject(xlRange2Replace);
                 Marshal.ReleaseComObject(xlRange2Used);
                 Marshal.ReleaseComObject(xlRangeCopy);
-                
                 Marshal.ReleaseComObject(xlWorksheet);
                 Marshal.ReleaseComObject(xlWorksheetCopy);
                 Marshal.ReleaseComObject(xlWorksheet2);
                 Marshal.ReleaseComObject(xlWorkbook);
                 Marshal.ReleaseComObject(xlWorkbook2);
                 Marshal.ReleaseComObject(xlWorkbookCopy);
-                //quit and release
-                //xlApp.Quit();
-               //xlApp2.Quit();
-
                 Marshal.ReleaseComObject(xlApp);
                 Marshal.ReleaseComObject(xlApp2);
                 Marshal.ReleaseComObject(xlAppCopy);
 
 
-                // TRANSPOSE RESULTS
-                // MAKE WORD FILE?
             }
         }
 
