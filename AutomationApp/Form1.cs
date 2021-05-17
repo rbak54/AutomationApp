@@ -103,6 +103,7 @@ namespace AutomationApp
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sFileName);
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
+                //Clipboard.Clear();
                 //int rowCount = xlRange.Rows.Count;
                 //int colCount = xlRange.Columns.Count;
 
@@ -117,9 +118,10 @@ namespace AutomationApp
                 int nEndDestinationCopy = nRows;
                 string endDestinationCopy = "P" + nEndDestinationCopy.ToString(); // This will only work if all the docs are P columns wide!
                 Excel.Range xlRangeCopy = xlWorksheetCopy.get_Range("A1", endDestinationCopy);
-                xlRange.Copy(Type.Missing);
-                xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
-
+                //xlRange.Copy(Type.Missing);
+                //xlRangeCopy.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                //Clipboard.Clear();
+                xlRangeCopy.Value2 = xlRange.Value2;
                 //create COM objects for output file
                 Excel.Application xlApp2 = new Excel.Application();
                 xlApp2.Visible = false;
@@ -172,8 +174,10 @@ namespace AutomationApp
                     string endDestination = sampleLetter + nEndDestination.ToString();
                     Excel.Range xlRange2 = xlWorksheet2.get_Range(startDestination,endDestination);
                     Excel.Range sourceRng = xlWorksheetCopy.get_Range(startSource,endSource);
-                    sourceRng.Copy(Type.Missing) ;
-                    xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    //sourceRng.Copy(Type.Missing) ;
+                    xlRange2.Value2 = sourceRng.Value2;
+                    //xlRange2.PasteSpecial(Excel.XlPasteType.xlPasteValues);
+                    //Clipboard.Clear();
                     xlRange2.RemoveDuplicates(1, Excel.XlYesNoGuess.xlNo);
 
                     //REMOVE FILTER
@@ -189,7 +193,7 @@ namespace AutomationApp
                 //TRANSPOSE
 
                 Excel.Range xlRange2Used = xlWorksheet2.UsedRange;
-                xlRange2Used.Copy(Type.Missing);
+                //xlRange2Used.Copy(Type.Missing);
                 int rowsXlRange2Used = xlRange2Used.Rows.Count;
                 int colsXlRange2Used = xlRange2Used.Columns.Count;
 
@@ -197,14 +201,21 @@ namespace AutomationApp
                 string newRangeEnd = ((char)(rowsXlRange2Used + 64)).ToString() + (rowsXlRange2Used + colsXlRange2Used + 1 ).ToString();
 
                 Excel.Range xlRange2Replace = xlWorksheet2.get_Range(newRangeStart, newRangeEnd);
-                xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                // xlRange2Replace.PasteSpecial(Excel.XlPasteType.xlPasteValues, Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, true);
+                // Clipboard.Clear();
+
+                // Object[,] transposedRange = (Object[,])xlApp.WorksheetFunction.Transpose(xlRange2Used.Value2);
+                //xlWorksheet2.xlRange2Replace.Resize(transposedRange.GetUpperBound(0), transposedRange.GetUpperBound(1)) = transposedRange;
+
+                //Object[,] transposedRange = xlApp.WorksheetFunction.Transpose(xlRange2Used.Value2);
+                xlWorksheet2.Range[newRangeStart + ":" +newRangeEnd].Value = xlApp2.WorksheetFunction.Transpose(xlRange2Used);
                 xlRange2Used.EntireRow.Delete();
 
 
                 //SAVE OUTPUT DOCUMENT
                 string fileName = Path.GetFileName(sFileName); //retreives the filename from the path
                 string directoryName = Path.GetDirectoryName(sFileName); //retreives path of the directory of selected file
-                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ fileName);
+                xlWorkbook2.SaveAs(directoryName + "/" + "output_"+ (comboBox1.SelectedIndex + 1)+ fileName);
                 label_output.Text = "Output file is complete: " + directoryName + "/" + "output_" + fileName;
 
                 //Close documents without displaying any prompt boxes
